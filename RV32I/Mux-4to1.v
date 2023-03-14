@@ -10,13 +10,13 @@ module Mux_4to1(
 always @ (*)
     begin
         case (SEL)
-            00      :       Y   =   I0;
+            2'b00      :       Y   =   I0;
 
-            01      :       Y   =   I1;
+            2'b01      :       Y   =   I1;
 
-            10      :       Y   =   I2;
+            2'b10      :       Y   =   I2;
 
-            11      :       Y   =   I3;
+            2'b11      :       Y   =   I3;
 
             default :       Y   =   I0;
         endcase

@@ -65,12 +65,16 @@ wire    [31:0]  PcTargetAdd;
 wire    [31:0]  PcTargetE;
 
 wire            FlushE; 
-wire            ForwardAE;
-wire            ForwardBE;
+wire    [2:0]   ForwardAE;
+wire    [2:0]   ForwardBE;
+wire            ForwardRs1;
+wire            ForwardRs2;
+wire    [31:0]  RD1Src;
+wire    [31:0]  RD2Src;
 
-wire            SrcAE;
-wire            WriteDataE;
-wire            SrcBE;
+wire    [31:0]  SrcAE;
+wire    [31:0]  WriteDataE;
+wire    [31:0]  SrcBE;
 wire    [31:0]  ALUResultE;
 wire    [3:0]   Flags;
 
@@ -96,18 +100,18 @@ wire    [31:0]  ReadDataM;
 wire    [31:0]  ResultW;
 wire    [4:0]   RdW;
 wire            RegWriteW;
-wire    [2:0]   ResultSrcw;
-wire    [31:0]  ALUResultw;
-wire    [31:0]  ReadDataw;
-wire    [31:0]  ExtImmw;
-wire    [31:0]  PcTargetw;
-wire    [31:0]  PCPlus4w;
+wire    [2:0]   ResultSrcW;
+wire    [31:0]  ALUResultW;
+wire    [31:0]  ReadDataW;
+wire    [31:0]  ExtImmW;
+wire    [31:0]  PcTargetW;
+wire    [31:0]  PCPlus4W;
 
 
 //Program Counter
 PC  PC  (
     .PCF_p(PCF_p),
-    .EN(StallF),
+    .EN(~StallF),
     .CLK(CLK),
     .RST(RST),
     .PCF(PCF)
@@ -129,6 +133,7 @@ IF_ID_Reg   IFIDReg (
     .InstrF(InstrF),
     .PCF(PCF),
     .PCPlus4F(PCPlus4F),
+    .RST(RST),
     .CLK(CLK),
     .FLUSH(FlushD),
     .EN(~StallD), 
@@ -194,16 +199,17 @@ ID_EX_Reg   IDEXReg (
     .SLTControlD(SLTControlD),
     .StrobeD(StrobeD),
 
-    .RD1D(RD1D),
-    .RD2D(RD2D),
+    .RD1D(RD1Src),
+    .RD2D(RD2Src),
     
     .PCD(PCD),
-    .Rs1D(Rs1D),
-    .Rs2D(Rs2D),
-    .RdD(RdD),
+    .Rs1D(InstrD[19:15]),
+    .Rs2D(InstrD[24:20]),
+    .RdD(InstrD[11:7]),
     .ExtImmD(ExtImmD),
     .PCPlus4D(PCPlus4D),
 
+    .RST(RST),
     .CLK(CLK),
     .FLUSH(FlushE),
 
@@ -238,20 +244,28 @@ PCTargetAdder TargetAdder (
     .PcTargetE(PcTargetAdd)
 );
 
-Mux_4to1 ForwardAMux (
+Mux_8to1 ForwardAMux (
     .I0(RD1E),
     .I1(ResultW),
     .I2(ALUResultM),
-    .I3(0),
+    .I3(ExtImmM),
+    .I4(PcTargetM),
+    .I5(ExtImmW),
+    .I6(PcTargetW),
+    .I7(0),
     .SEL(ForwardAE),
     .Y(SrcAE)
 );
 
-Mux_4to1 ForwardBMux (
+Mux_8to1 ForwardBMux (
     .I0(RD2E),
     .I1(ResultW),
     .I2(ALUResultM),
-    .I3(0),
+    .I3(ExtImmM),
+    .I4(PcTargetM),
+    .I5(ExtImmW),
+    .I6(PcTargetW),
+    .I7(0),
     .SEL(ForwardBE),
     .Y(WriteDataE)
 );
@@ -262,6 +276,22 @@ Mux_2to1 SrcBMux (
     .SEL(ALUSrcE),
     .Y(SrcBE)
 );
+
+Mux_2to1 ForwardR1 (
+    .I0(RD1D),
+    .I1(ResultW),
+    .SEL(ForwardRs1),
+    .Y(RD1Src)
+);
+
+
+Mux_2to1 ForwardR2 (
+    .I0(RD2D),
+    .I1(ResultW),
+    .SEL(ForwardRs2),
+    .Y(RD2Src)
+);
+
 
 ALU ALU (
     .A(SrcAE),
@@ -372,17 +402,20 @@ Mux_8to1 WriteBackMux (
 );
 
 HazardUnit HU (
-    .Rs1D(Rs1D),
-    .Rs2D(Rs2D),
+    .Rs1D(InstrD[19:15]),
+    .Rs2D(InstrD[24:20]),
     .Rs1E(Rs1E),
     .Rs2E(Rs2E),
     .RdE(RdE),
     .PCSrcE(PCSrcE),
     .ResultSrcE(ResultSrcE),
+    .ResultSrcM(ResultSrcM),
+    .ResultSrcW(ResultSrcW),
     .RdM(RdM),
     .RegWriteM(RegWriteM),
     .RdW(RdW),
     .RegWriteW(RegWriteW),
+    .CLK(CLK),
     .RST(RST),
 
     .StallF(StallF),
@@ -390,7 +423,9 @@ HazardUnit HU (
     .FlushD(FlushD),
     .FlushE(FlushE),
     .ForwardAE(ForwardAE),
-    .ForwardBE(ForwardBE)
+    .ForwardBE(ForwardBE),
+    .ForwardRs1(ForwardRs1),
+    .ForwardRs2(ForwardRs2)
 );
 
 

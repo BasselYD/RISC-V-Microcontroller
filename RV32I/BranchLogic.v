@@ -13,22 +13,22 @@ always @ (*)
     begin   
         case (BranchTypeE)
             //beq
-            000         :       Condition   =   Zero;
+            3'b000         :       Condition   =   Zero;
 
             //bne
-            001         :       Condition   =   ~Zero;
+            3'b001         :       Condition   =   ~Zero;
 
             //blt
-            100         :       Condition   =   LSB;
+            3'b100         :       Condition   =   LSB;
 
             //bge
-            101         :       Condition   =   ~LSB;
+            3'b101         :       Condition   =   ~LSB;
 
             //bltu
-            110         :       Condition   =   LSB;
+            3'b110         :       Condition   =   LSB;
 
             //bgeu
-            111         :       Condition   =   ~LSB;
+            3'b111         :       Condition   =   ~LSB;
             
             default     :       Condition   =   Zero;
         endcase

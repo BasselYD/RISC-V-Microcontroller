@@ -31,13 +31,14 @@ begin
 
     else if (WrEn)
         begin
-            RF[WrAddress] <= WrData;
+            if (WrAddress != 0)
+                RF[WrAddress] <= WrData;
         end
 end
 
 
-assign RdData1 = RF[RdAddress1];
-assign RdData2 = RF[RdAddress2];
+assign RdData1 = (RdAddress1 == 0) ? 32'b0 : RF[RdAddress1];
+assign RdData2 = (RdAddress2 == 0) ? 32'b0 : RF[RdAddress2];
 
 
 endmodule

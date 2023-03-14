@@ -61,12 +61,12 @@ always @ (*)
                                 end
 
             SRA         :       begin
-                                    {Result, Carry}     =   A >>> B;
+                                    Result     =   $signed(A) >>> B;
                                     Overflow                =   0;
                                 end
 
             SRL         :       begin
-                                    {Result, Carry}     =   A >> B;
+                                    Result     =   A >> B;
                                     Overflow                =   0;
                                 end
 
@@ -81,13 +81,13 @@ always @ (*)
 always @ (*)
     begin
         case (SLTControlE)
-            00      :   ALUResultE  =   Result;                          //Normal Operation
+            2'b00      :   ALUResultE  =   Result;                          //Normal Operation
 
-            01      :   ALUResultE  =   {31'b0, Negative ^ Overflow};    //SLT
+            2'b01      :   ALUResultE  =   {31'b0, Negative ^ Overflow};    //SLT
 
-            10      :   ALUResultE  =   {31'b0, ~Carry};                 //SLTU
+            2'b10      :   ALUResultE  =   {31'b0, Carry};                 //SLTU
 
-            11      :   ALUResultE  =   Result;                          //Normal Operation
+            2'b11      :   ALUResultE  =   Result;                          //Normal Operation
 
             default :   ALUResultE  =   Result;                          //Normal Operation
         endcase

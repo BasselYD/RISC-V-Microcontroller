@@ -3,6 +3,7 @@ module IF_ID_Reg (
     input       wire       [31:0]       PCF,
     input       wire       [31:0]       PCPlus4F,
     input       wire                    CLK,
+    input       wire                    RST,
     input       wire                    FLUSH,
     input       wire                    EN, 
     output      reg        [31:0]       InstrD,
@@ -10,9 +11,9 @@ module IF_ID_Reg (
     output      reg        [31:0]       PCPlus4D
 );
 
-always @ (posedge CLK or posedge FLUSH)
+always @ (posedge CLK or negedge RST)
     begin
-        if (FLUSH)
+        if (FLUSH | !RST)
             begin
                 InstrD <= 0;
                 PCD <= 0;

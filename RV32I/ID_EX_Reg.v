@@ -24,6 +24,7 @@ module ID_EX_Reg (
     input       wire        [31:0]      ExtImmD,
     input       wire        [31:0]      PCPlus4D,
 
+    input       wire                    RST,
     input       wire                    CLK,
     input       wire                    FLUSH,
 
@@ -54,9 +55,9 @@ module ID_EX_Reg (
     output      reg         [31:0]      PCPlus4E
 );
 
-always @ (posedge CLK or posedge FLUSH)
+always @ (posedge CLK or negedge RST)
     begin
-        if (FLUSH)
+        if (FLUSH | !RST)
             begin
                 RegWriteE <= 0;
                 ResultSrcE <= 0;

@@ -4,10 +4,10 @@ module InstructionMem (
 );
 
 
-reg        [7:0]      MEM     [0:4_294_967_295];
+reg        [7:0]      MEM     [0:512]; //2_147_483_648 Half the Address Space.
 
 
-assign Instruction  =   {MEM[Address + 3], MEM[Address + 2], MEM[Address + 1], MEM[Address]};
+assign Instruction  =   {MEM[Address], MEM[Address + 1], MEM[Address + 2], MEM[Address + 3]};
 
     
 endmodule

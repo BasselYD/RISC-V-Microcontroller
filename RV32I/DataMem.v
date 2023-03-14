@@ -9,7 +9,7 @@ module DataMem (
 );
 
 
-reg        [7:0]      MEM     [0:4_294_967_295];
+reg        [7:0]      MEM     [0:512]; //2_147_483_648 Half the Address Space.
 
 
 always @ (posedge CLK)
@@ -18,17 +18,17 @@ always @ (posedge CLK)
             begin
                 case (StrobeM)
                     //sb
-                    000         :       begin
+                    3'b000         :       begin
                                             MEM[Address]    <=      WriteDataM[7:0];
                                         end 
 
                     //sh
-                    001         :       begin
+                    3'b001         :       begin
                                             {MEM[Address], MEM[Address + 1]}    <=      WriteDataM[15:0];
                                         end 
 
                     //sw
-                    010         :       begin
+                    3'b010         :       begin
                                             {MEM[Address], MEM[Address + 1], MEM[Address + 2], MEM[Address + 3]}     <=      WriteDataM;
                                         end 
 
@@ -44,27 +44,27 @@ always @ (*)
     begin
         case (StrobeM)
             //lb
-            000         :       begin
+            3'b000         :       begin
                                     ReadDataM  =   {{24{MEM[Address][7]}}, MEM[Address]};
                                 end 
 
             //lh
-            001         :       begin
+            3'b001         :       begin
                                     ReadDataM  =   {{16{MEM[Address][7]}}, MEM[Address], MEM[Address + 1]};
                                 end 
 
             //lw
-            010         :       begin
+            3'b010         :       begin
                                     ReadDataM  =   {MEM[Address], MEM[Address + 1], MEM[Address + 2], MEM[Address + 3]};
                                 end 
 
             //lbu
-            100         :       begin
+            3'b100         :       begin
                                     ReadDataM  =   {24'b0, MEM[Address]};
                                 end 
 
             //lhu
-            101         :       begin
+            3'b101         :       begin
                                     ReadDataM  =   {16'b0, MEM[Address], MEM[Address + 1]};
                                 end 
 

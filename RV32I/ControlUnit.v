@@ -72,52 +72,54 @@ always @ (*)
                     end
 
                 case (funct3)
-                    000     :       begin
-                                        SLTControlD         =   2'b00;
-                                        if (funct7_5)
-                                            ALUControlD     =   ADD;
-                                        else
-                                            ALUControlD     =   SUB;    
-                                    end
+                    3'b000     :        begin
+                                            SLTControlD         =   2'b00;
+                                            if (OP == RTYPE && funct7_5)
+                                                ALUControlD     =   SUB;
+                                            else
+                                                ALUControlD     =   ADD;    
+                                        end
 
-                    001     :       begin
-                                        ALUControlD     =       SLL;
-                                        SLTControlD     =       2'b00;
-                                    end
+                    3'b001     :        begin
+                                            ALUControlD     =       SLL;
+                                            SLTControlD     =       2'b00;
+                                            ImmSrcD         =       3'b101;
+                                        end
 
-                    010     :       begin
-                                        ALUControlD     =       SUB;
-                                        SLTControlD     =       2'b01;
-                                    end
+                    3'b010     :        begin
+                                            ALUControlD     =       SUB;
+                                            SLTControlD     =       2'b01;
+                                        end
 
 
-                    011     :       begin
-                                        ALUControlD     =       SUB;
-                                        SLTControlD     =       2'b10;
-                                    end
+                    3'b011     :        begin
+                                            ALUControlD     =       SUB;
+                                            SLTControlD     =       2'b10;
+                                        end
 
-                    100     :       begin
-                                        ALUControlD     =       XOR;
-                                        SLTControlD     =       2'b00;
-                                    end
+                    3'b100     :        begin
+                                            ALUControlD     =       XOR;
+                                            SLTControlD     =       2'b00;
+                                        end
 
-                    101     :       begin
-                                        SLTControlD     =       2'b00;
-                                        if (funct7_5)
-                                            ALUControlD     =   SRA;
-                                        else
-                                            ALUControlD     =   SRL; 
-                                    end
+                    3'b101     :        begin
+                                            ImmSrcD         =       3'b101;
+                                            SLTControlD     =       2'b00;
+                                            if (funct7_5)
+                                                ALUControlD     =   SRA;
+                                            else
+                                                ALUControlD     =   SRL; 
+                                        end
 
-                    110     :       begin
-                                        ALUControlD     =       OR;
-                                        SLTControlD     =       2'b00;
-                                    end
+                    3'b110     :        begin
+                                            ALUControlD     =       OR;
+                                            SLTControlD     =       2'b00;
+                                        end
 
-                    111     :       begin
-                                        ALUControlD     =       AND;
-                                        SLTControlD     =       2'b00;
-                                    end
+                    3'b111     :        begin
+                                            ALUControlD     =       AND;
+                                            SLTControlD     =       2'b00;
+                                        end
                 endcase
             end
 
@@ -193,7 +195,7 @@ always @ (*)
                 JumpD = 0;
                 JumpTypeD = 0;
                 BranchD = 1;
-                ALUSrcD = 1;
+                ALUSrcD = 0;
                 ImmSrcD = 3'b010;
                 ALUControlD = SUB;
                 StrobeD = 0;
@@ -201,34 +203,34 @@ always @ (*)
 
                 case (funct3)
                     //beq
-                    000         :       begin
-                                            SLTControlD = 2'b00;
-                                        end
+                    3'b000         :        begin
+                                                SLTControlD = 2'b00;
+                                            end
 
                     //bne
-                    001         :       begin
-                                            SLTControlD = 2'b00;
-                                        end
+                    3'b001         :        begin
+                                                SLTControlD = 2'b00;
+                                            end
 
                     //blt
-                    100         :       begin
-                                            SLTControlD = 2'b01;
-                                        end
+                    3'b100         :        begin
+                                                SLTControlD = 2'b01;
+                                            end
 
                     //bge
-                    101         :       begin
-                                            SLTControlD = 2'b01;
-                                        end
+                    3'b101         :        begin
+                                                SLTControlD = 2'b01;
+                                            end
 
                     //bltu
-                    110         :       begin
-                                            SLTControlD = 2'b10;
-                                        end
+                    3'b110         :        begin
+                                                SLTControlD = 2'b10;
+                                            end
 
                     //bgeu
-                    111         :       begin
-                                            SLTControlD = 2'b10;
-                                        end
+                    3'b111         :        begin
+                                                SLTControlD = 2'b10;
+                                            end
 
                     default     :       begin
                                             SLTControlD = 2'b00;
