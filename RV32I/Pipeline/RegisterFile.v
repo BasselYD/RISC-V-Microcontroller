@@ -1,4 +1,7 @@
 module Register_File #(parameter WIDTH = 32, parameter DEPTH_BITS = 5) (
+    input       wire                                      clk,
+    input       wire                                      rst,
+
     input       wire       [WIDTH - 1 : 0]                WrData,
     input       wire       [DEPTH_BITS - 1 : 0]           WrAddress,
     input       wire                                      WrEn,
@@ -6,39 +9,40 @@ module Register_File #(parameter WIDTH = 32, parameter DEPTH_BITS = 5) (
     input       wire       [DEPTH_BITS - 1 : 0]           RdAddress1,
     input       wire       [DEPTH_BITS - 1 : 0]           RdAddress2,
 
-    input       wire                                      CLK,
-    input       wire                                      RST,
-
-    output      wire       [WIDTH - 1 : 0]                RdData1,
-    output      wire       [WIDTH - 1 : 0]                RdData2
+    output      reg        [WIDTH - 1 : 0]                RdData1,
+    output      reg        [WIDTH - 1 : 0]                RdData2
 );
 
 localparam DEPTH = (1 << DEPTH_BITS);
 
 reg     [WIDTH - 1 : 0]      RF      [DEPTH - 1 : 0];
 
-integer I;
 
-always @ (posedge CLK or negedge RST)
+always @ (posedge clk or negedge rst)
 begin
-    if (!RST)
+    if (!rst)
         begin
-            for (I = 0; I < DEPTH; I = I + 1)
-                begin
-                    RF[I] = 'b0;
-                end
+            RdData1 <= 0;
+            RdData2 <= 0;
         end
 
-    else if (WrEn)
+    else 
+        begin
+            RdData1 <= (RdAddress1 == 0) ? 32'b0 : RF[RdAddress1];
+            RdData2 <= (RdAddress2 == 0) ? 32'b0 : RF[RdAddress2];
+        end
+
+end
+
+always @ (negedge clk)
+begin
+    if (WrEn)
         begin
             if (WrAddress != 0)
                 RF[WrAddress] <= WrData;
         end
 end
 
-
-assign RdData1 = (RdAddress1 == 0) ? 32'b0 : RF[RdAddress1];
-assign RdData2 = (RdAddress2 == 0) ? 32'b0 : RF[RdAddress2];
 
 
 endmodule

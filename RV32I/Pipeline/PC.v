@@ -1,15 +1,15 @@
 module PC (
     input       wire        [31:0]      PCF_p,
     input       wire                    EN,
-    input       wire                    CLK,
-    input       wire                    RST,
+    input       wire                    clk,
+    input       wire                    rst,
     output      reg         [31:0]      PCF
 );
 
 
-always @ (posedge CLK or negedge RST) 
+always @ (posedge clk or negedge rst) 
     begin
-        if (!RST)
+        if (!rst)
             PCF <= 0;
         else
             begin

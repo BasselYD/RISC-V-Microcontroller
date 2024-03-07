@@ -10,8 +10,9 @@ module MEM_WB_Reg (
     input       wire        [31:0]      PcTargetM,
     input       wire        [31:0]      PCPlus4M,
 
-    input       wire                    CLK,
-    input       wire                    RST,
+    input       wire                    clk,
+    input       wire                    rst,
+    input       wire                    EN, 
 
     //Control Unit - WriteBack
     output      reg                     RegWriteW,
@@ -26,9 +27,9 @@ module MEM_WB_Reg (
 );
     
 
-always @ (posedge CLK or negedge RST)
+always @ (posedge clk or negedge rst)
     begin
-        if (!RST)
+        if (!rst)
             begin
                 RegWriteW   <=   0;
                 ResultSrcW  <=   0;
@@ -42,15 +43,18 @@ always @ (posedge CLK or negedge RST)
             end
         else
             begin
-                RegWriteW   <=   RegWriteM;
-                ResultSrcW  <=   ResultSrcM;
+                if (EN)
+                    begin
+                        RegWriteW   <=   RegWriteM;
+                        ResultSrcW  <=   ResultSrcM;
 
-                ALUResultW  <=   ALUResultM;
-                ReadDataW   <=   ReadDataM;
-                RdW         <=   RdM;
-                ExtImmW     <=   ExtImmM;
-                PcTargetW   <=   PcTargetM;
-                PCPlus4W    <=   PCPlus4M;
+                        ALUResultW  <=   ALUResultM;
+                        ReadDataW   <=   ReadDataM;
+                        RdW         <=   RdM;
+                        ExtImmW     <=   ExtImmM;
+                        PcTargetW   <=   PcTargetM;
+                        PCPlus4W    <=   PCPlus4M;
+                    end
             end
     end
 

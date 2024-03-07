@@ -3,7 +3,10 @@ module EX_MEM_Reg (
     input       wire                    RegWriteE,
     input       wire        [2:0]       ResultSrcE,
     input       wire                    MemWriteE,
+    input       wire                    MemReadE,
     input       wire        [2:0]       StrobeE,
+    input       wire        [4:0]       Rs1E,
+    input       wire        [4:0]       Rs2E,
 
     input       wire        [31:0]      ALUResultE,
     input       wire        [31:0]      WriteDataE,
@@ -12,14 +15,18 @@ module EX_MEM_Reg (
     input       wire        [31:0]      PcTargetE,
     input       wire        [31:0]      PCPlus4E,
 
-    input       wire                    CLK,
-    input       wire                    RST,
+    input       wire                    clk,
+    input       wire                    rst,
+    input       wire                    EN, 
 
     //Control Unit - Memory
     output      reg                     RegWriteM,
     output      reg         [2:0]       ResultSrcM,
     output      reg                     MemWriteM,
+    output      reg                     MemReadM,
     output      reg         [2:0]       StrobeM,
+    output      reg         [4:0]       Rs1M,
+    output      reg         [4:0]       Rs2M,
 
     output      reg         [31:0]      ALUResultM,
     output      reg         [31:0]      WriteDataM,
@@ -30,14 +37,17 @@ module EX_MEM_Reg (
 );
     
 
-always @ (posedge CLK or negedge RST)
+always @ (posedge clk or negedge rst)
     begin
-        if (!RST)
+        if (!rst)
             begin
                 RegWriteM   <=   0;
                 ResultSrcM  <=   0;
                 MemWriteM   <=   0;
+                MemReadM    <=   0;
                 StrobeM     <=   0;
+                Rs1M        <=   0;
+                Rs2M        <=   0;
 
                 ALUResultM  <=   0;
                 WriteDataM  <=   0;
@@ -48,17 +58,23 @@ always @ (posedge CLK or negedge RST)
             end
         else
             begin
-                RegWriteM   <=   RegWriteE;
-                ResultSrcM  <=   ResultSrcE;
-                MemWriteM   <=   MemWriteE;
-                StrobeM     <=   StrobeE;
+                if (EN)
+                    begin
+                        RegWriteM   <=   RegWriteE;
+                        ResultSrcM  <=   ResultSrcE;
+                        MemWriteM   <=   MemWriteE;
+                        MemReadM    <=   MemReadE;
+                        StrobeM     <=   StrobeE;
+                        Rs1M        <=   Rs1E;
+                        Rs2M        <=   Rs2E;
 
-                ALUResultM  <=   ALUResultE;
-                WriteDataM  <=   WriteDataE;
-                RdM         <=   RdE;
-                ExtImmM     <=   ExtImmE;
-                PcTargetM   <=   PcTargetE;
-                PCPlus4M    <=   PCPlus4E;
+                        ALUResultM  <=   ALUResultE;
+                        WriteDataM  <=   WriteDataE;
+                        RdM         <=   RdE;
+                        ExtImmM     <=   ExtImmE;
+                        PcTargetM   <=   PcTargetE;
+                        PCPlus4M    <=   PCPlus4E;
+                    end
             end
     end
 

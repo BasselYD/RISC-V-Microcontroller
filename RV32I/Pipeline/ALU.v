@@ -56,18 +56,21 @@ always @ (*)
                                 end
 
             SLL         :       begin
-                                    {Carry, Result}     =   A << B;
-                                    Overflow                =   0;
+                                    Result     =   A << B[4:0];
+                                    Overflow   =   0;
+                                    Carry      =   0;
                                 end
 
             SRA         :       begin
-                                    Result     =   $signed(A) >>> B;
+                                    Result     =   $signed(A) >>> $signed(B[4:0]);
                                     Overflow                =   0;
+                                    Carry       =   0;
                                 end
 
             SRL         :       begin
-                                    Result     =   A >> B;
+                                    Result     =   A >> B[4:0];
                                     Overflow                =   0;
+                                    Carry       =   0;
                                 end
 
             default     :       begin

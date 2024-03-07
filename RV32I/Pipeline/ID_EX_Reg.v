@@ -3,6 +3,7 @@ module ID_EX_Reg (
     input       wire                    RegWriteD,
     input       wire        [2:0]       ResultSrcD,
     input       wire                    MemWriteD,
+    input       wire                    MemReadD,
     input       wire                    JumpD,
     input       wire                    JumpTypeD,
     input       wire                    BranchD,
@@ -24,14 +25,16 @@ module ID_EX_Reg (
     input       wire        [31:0]      ExtImmD,
     input       wire        [31:0]      PCPlus4D,
 
-    input       wire                    RST,
-    input       wire                    CLK,
+    input       wire                    rst,
+    input       wire                    clk,
+    input       wire                    EN, 
     input       wire                    FLUSH,
 
     //Control Unit - Execute
     output      reg                     RegWriteE,
     output      reg         [2:0]       ResultSrcE,
     output      reg                     MemWriteE,
+    output      reg                     MemReadE,
     output      reg                     JumpE,
     output      reg                     JumpTypeE,
     output      reg                     BranchE,
@@ -42,8 +45,8 @@ module ID_EX_Reg (
     output      reg         [2:0]       StrobeE,
 
     //RF - Execute
-    output      reg         [31:0]      RD1E,
-    output      reg         [31:0]      RD2E,
+    output      wire        [31:0]      RD1E,
+    output      wire        [31:0]      RD2E,
 
     //Instruction - Execute
     output      reg         [4:0]       Rs1E,
@@ -55,13 +58,16 @@ module ID_EX_Reg (
     output      reg         [31:0]      PCPlus4E
 );
 
-always @ (posedge CLK or negedge RST)
+reg flushReg;
+
+always @ (posedge clk or negedge rst)
     begin
-        if (FLUSH | !RST)
+        if (!rst)
             begin
                 RegWriteE <= 0;
                 ResultSrcE <= 0;
                 MemWriteE <= 0;
+                MemReadE <= 0;
                 JumpE <= 0;
                 JumpTypeE <= 0;
                 BranchE <= 0;
@@ -71,8 +77,31 @@ always @ (posedge CLK or negedge RST)
                 SLTControlE <= 0;
                 StrobeE <= 0;
 
-                RD1E <= 0;
-                RD2E <= 0;
+                flushReg <= 0;
+
+                PCE <= 0;
+                Rs1E <= 0;
+                Rs2E <= 0;
+                RdE <= 0;
+                ExtImmE <= 0;
+                PCPlus4E <= 0;
+            end
+        else if (FLUSH)
+            begin
+                RegWriteE <= 0;
+                ResultSrcE <= 0;
+                MemWriteE <= 0;
+                MemReadE <= 0;
+                JumpE <= 0;
+                JumpTypeE <= 0;
+                BranchE <= 0;
+                BranchTypeE <= 0;
+                ALUControlE <= 0;
+                ALUSrcE <= 0;
+                SLTControlE <= 0;
+                StrobeE <= 0;
+
+                flushReg <= 1;
 
                 PCE <= 0;
                 Rs1E <= 0;
@@ -83,28 +112,35 @@ always @ (posedge CLK or negedge RST)
             end
         else
             begin
-                RegWriteE <= RegWriteD;
-                ResultSrcE <= ResultSrcD;
-                MemWriteE <= MemWriteD;
-                JumpE <= JumpD;
-                JumpTypeE <= JumpTypeD;
-                BranchE <= BranchD;
-                BranchTypeE <= BranchTypeD;
-                ALUControlE <= ALUControlD;
-                ALUSrcE <= ALUSrcD;
-                SLTControlE <= SLTControlD;
-                StrobeE <= StrobeD;
+                if (EN)
+                    begin
+                        RegWriteE <= RegWriteD;
+                        ResultSrcE <= ResultSrcD;
+                        MemWriteE <= MemWriteD;
+                        MemReadE <= MemReadD;
+                        JumpE <= JumpD;
+                        JumpTypeE <= JumpTypeD;
+                        BranchE <= BranchD;
+                        BranchTypeE <= BranchTypeD;
+                        ALUControlE <= ALUControlD;
+                        ALUSrcE <= ALUSrcD;
+                        SLTControlE <= SLTControlD;
+                        StrobeE <= StrobeD;
 
-                RD1E <= RD1D;
-                RD2E <= RD2D;
+                        flushReg <= 0;
 
-                PCE <= PCD;
-                Rs1E <= Rs1D;
-                Rs2E <= Rs2D;
-                RdE <= RdD;
-                ExtImmE <= ExtImmD;
-                PCPlus4E <= PCPlus4D;
+                        PCE <= PCD;
+                        Rs1E <= Rs1D;
+                        Rs2E <= Rs2D;
+                        RdE <= RdD;
+                        ExtImmE <= ExtImmD;
+                        PCPlus4E <= PCPlus4D;
+                    end
             end
     end
+
+//  Forwarded directly since Register File's output is synchronous.
+assign RD1E = (~rst | flushReg) ? 0 : RD1D;
+assign RD2E = (~rst | flushReg) ? 0 : RD2D;
     
 endmodule

@@ -6,6 +6,7 @@ module ControlUnit (
     output      reg                     RegWriteD,
     output      reg         [2:0]       ResultSrcD,
     output      reg                     MemWriteD,
+    output      reg                     MemReadD,
     output      reg                     JumpD,
     output      reg                     JumpTypeD,
     output      reg                     BranchD,
@@ -48,6 +49,7 @@ always @ (*)
                         RegWriteD = 1;
                         ResultSrcD = 3'b000;
                         MemWriteD = 0;
+                        MemReadD = 0;
                         JumpD = 0;
                         JumpTypeD = 0;
                         BranchD = 0;
@@ -62,6 +64,7 @@ always @ (*)
                         RegWriteD = 1;
                         ResultSrcD = 3'b000;
                         MemWriteD = 0;
+                        MemReadD = 0;
                         JumpD = 0;
                         JumpTypeD = 0;
                         BranchD = 0;
@@ -128,6 +131,7 @@ always @ (*)
                 RegWriteD = 1;
                 ResultSrcD = 3'b001;
                 MemWriteD = 0;
+                MemReadD = 1;
                 JumpD = 0;
                 JumpTypeD = 0;
                 BranchD = 0;
@@ -144,6 +148,7 @@ always @ (*)
                 RegWriteD = 0;
                 ResultSrcD = 3'b000;
                 MemWriteD = 1;
+                MemReadD = 0;
                 JumpD = 0;
                 JumpTypeD = 0;
                 BranchD = 0;
@@ -160,6 +165,7 @@ always @ (*)
                 RegWriteD = 1;
                 ResultSrcD = 3'b010;
                 MemWriteD = 0;
+                MemReadD = 0;
                 JumpD = 1;
                 JumpTypeD = 0;
                 BranchD = 0;
@@ -176,6 +182,7 @@ always @ (*)
                 RegWriteD = 1;
                 ResultSrcD = 3'b010;
                 MemWriteD = 0;
+                MemReadD = 0;
                 JumpD = 1;
                 JumpTypeD = 1;
                 BranchD = 0;
@@ -192,6 +199,7 @@ always @ (*)
                 RegWriteD = 0;
                 ResultSrcD = 3'b000;
                 MemWriteD = 0;
+                MemReadD = 0;
                 JumpD = 0;
                 JumpTypeD = 0;
                 BranchD = 1;
@@ -243,6 +251,7 @@ always @ (*)
                 RegWriteD = 1;
                 ResultSrcD = 3'b011;
                 MemWriteD = 0;
+                MemReadD = 0;
                 JumpD = 0;
                 JumpTypeD = 0;
                 BranchD = 0;
@@ -259,6 +268,7 @@ always @ (*)
                 RegWriteD = 1;
                 ResultSrcD = 3'b100;
                 MemWriteD = 0;
+                MemReadD = 0;
                 JumpD = 0;
                 JumpTypeD = 0;
                 BranchD = 0;
@@ -275,6 +285,7 @@ always @ (*)
                 RegWriteD = 1;
                 ResultSrcD = 3'b000;
                 MemWriteD = 0;
+                MemReadD = 0;
                 JumpD = 0;
                 JumpTypeD = 0;
                 BranchD = 0;

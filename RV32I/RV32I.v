@@ -1,6 +1,16 @@
 module RV32I (
-    input       wire        CLK,
-    input       wire        RST
+    input       wire        clk,
+    input       wire        rst,
+
+    //  AHB ADAPTER INTERFACE
+    input   wire    [31:0]      rdata,
+    input   wire                ready,
+    input   wire    [1:0]       HTRANS,
+
+    output  wire    [31:0]      addr,
+    output  wire                write,
+    output  wire    [31:0]      wdata,
+    output  wire    [2:0]       transfer
 );
 
 //----------Internal Signals----------//
@@ -17,6 +27,7 @@ wire    [31:0]  InstrF;
 wire            RegWriteD;
 wire    [2:0]   ResultSrcD;
 wire            MemWriteD;
+wire            MemReadD;
 wire            JumpD;
 wire            JumpTypeD;
 wire            BranchD;
@@ -44,6 +55,7 @@ wire            StallD;
 wire            RegWriteE;
 wire    [2:0]   ResultSrcE;
 wire            MemWriteE;
+wire            MemReadE;
 wire            JumpE;
 wire            JumpTypeE;
 wire            BranchE;
@@ -85,7 +97,10 @@ wire            PCSrcE;
 wire            RegWriteM;
 wire    [2:0]   ResultSrcM;
 wire            MemWriteM;
+wire            MemReadM;
 wire    [2:0]   StrobeM;
+wire    [4:0]   Rs1M;
+wire    [4:0]   Rs2M;
 
 wire    [31:0]  ALUResultM;
 wire    [31:0]  WriteDataM;
@@ -107,21 +122,96 @@ wire    [31:0]  ExtImmW;
 wire    [31:0]  PcTargetW;
 wire    [31:0]  PCPlus4W;
 
+localparam BLOCK_SIZE = 32;
+localparam NUM_LINES = 256;
+
+
+wire ICacheValid;
+wire DCacheValid;
+wire HazardStallF;
+wire HazardStallD;
+
+wire    [(BLOCK_SIZE*8) - 1:0]          inst_memReadData;
+wire                                    inst_memBusy;
+wire     [31:0]                         inst_memAddress;
+wire                                    inst_memRead;
+
+wire    [31:0]                      data_memAddress;
+wire                                data_memRead;
+wire                                data_memWrite;
+wire    [31:0]                      data_memWriteData;
+wire    [2:0]                       data_strobe;
+wire    [(BLOCK_SIZE*8) - 1:0]      data_memReadData;
+wire                                data_memBusy;
+
 
 //Program Counter
 PC  PC  (
     .PCF_p(PCF_p),
     .EN(~StallF),
-    .CLK(CLK),
-    .RST(RST),
+    .clk(clk),
+    .rst(rst),
     .PCF(PCF)
 );
 
-//Instruction Memory
-InstructionMem  IMEM (
-    .Address(PCF),
-    .Instruction(InstrF)
+Memory_Arbiter #(
+    .BLOCK_SIZE(BLOCK_SIZE)
+) mem_arb (
+    .clk(clk),
+    .rst(rst),
+
+    //  I-CACHE INTERFACE
+    .inst_memAddress(inst_memAddress),
+    .inst_memRead(inst_memRead),
+    .inst_memReadData(inst_memReadData),
+    .inst_memBusy(inst_memBusy),
+
+    //  D-CACHE INTERFACE
+    .data_memAddress(data_memAddress),
+    .data_memRead(data_memRead),
+    .data_memWrite(data_memWrite),
+    .data_memWriteData(data_memWriteData),
+    .data_strobe(data_strobe),
+    .data_memReadData(data_memReadData),
+    .data_memBusy(data_memBusy),
+
+
+    //  AHB ADAPTER INTERFACE
+    .rdata(rdata),
+    .ready(ready),
+    .HTRANS(HTRANS),
+
+    .addr(addr),
+    .write(write),
+    .wdata(wdata),
+    .transfer(transfer)
 );
+
+
+
+ICache #(
+    .BLOCK_SIZE(BLOCK_SIZE), 
+    .NUM_LINES(NUM_LINES)
+) u_icache (
+    .clk(clk),
+    .rst(rst),
+
+    //  Processor Interface.
+    .address(PCF),
+    .instruction(InstrF),
+    .valid(ICacheValid),
+
+    //  Memory Interface.
+    .memReadData(inst_memReadData),
+    .memBusy(inst_memBusy),
+    .memAddress(inst_memAddress),
+    .memRead(inst_memRead)
+);
+
+
+assign StallF = HazardStallF | ~ICacheValid | ~DCacheValid; 
+assign StallD = HazardStallD | ~ICacheValid | ~DCacheValid; 
+
 
 PCPlus4Adder PCAdder (
     .PCF(PCF),
@@ -133,8 +223,8 @@ IF_ID_Reg   IFIDReg (
     .InstrF(InstrF),
     .PCF(PCF),
     .PCPlus4F(PCPlus4F),
-    .RST(RST),
-    .CLK(CLK),
+    .rst(rst),
+    .clk(clk),
     .FLUSH(FlushD),
     .EN(~StallD), 
     .InstrD(InstrD),
@@ -151,6 +241,7 @@ ControlUnit CU (
     .RegWriteD(RegWriteD),
     .ResultSrcD(ResultSrcD),
     .MemWriteD(MemWriteD),
+    .MemReadD(MemReadD),
     .JumpD(JumpD),
     .JumpTypeD(JumpTypeD),
     .BranchD(BranchD),
@@ -171,8 +262,8 @@ Register_File #(.WIDTH(32), .DEPTH_BITS(5))  RF (
     .RdAddress1(InstrD[19:15]),
     .RdAddress2(InstrD[24:20]),
 
-    .CLK(CLK),
-    .RST(RST),
+    .clk(clk),
+    .rst(rst),
 
     .RdData1(RD1D),
     .RdData2(RD2D)
@@ -190,6 +281,7 @@ ID_EX_Reg   IDEXReg (
     .RegWriteD(RegWriteD),
     .ResultSrcD(ResultSrcD),
     .MemWriteD(MemWriteD),
+    .MemReadD(MemReadD),
     .JumpD(JumpD),
     .JumpTypeD(JumpTypeD),
     .BranchD(BranchD),
@@ -209,13 +301,15 @@ ID_EX_Reg   IDEXReg (
     .ExtImmD(ExtImmD),
     .PCPlus4D(PCPlus4D),
 
-    .RST(RST),
-    .CLK(CLK),
+    .rst(rst),
+    .clk(clk),
+    .EN(~DCacheValid),
     .FLUSH(FlushE),
 
     .RegWriteE(RegWriteE),
     .ResultSrcE(ResultSrcE),
     .MemWriteE(MemWriteE),
+    .MemReadE(MemReadE),
     .JumpE(JumpE),
     .JumpTypeE(JumpTypeE),
     .BranchE(BranchE),
@@ -329,7 +423,10 @@ EX_MEM_Reg EXMEMReg (
     .RegWriteE(RegWriteE),
     .ResultSrcE(ResultSrcE),
     .MemWriteE(MemWriteE),
+    .MemReadE(MemReadE),
     .StrobeE(StrobeE),
+    .Rs1E(Rs1E),
+    .Rs2E(Rs2E),
 
     .ALUResultE(ALUResultE),
     .WriteDataE(WriteDataE),
@@ -338,13 +435,17 @@ EX_MEM_Reg EXMEMReg (
     .PcTargetE(PcTargetE),
     .PCPlus4E(PCPlus4E),
 
-    .CLK(CLK),
-    .RST(RST),
+    .clk(clk),
+    .rst(rst),
+    .EN(~DCacheValid),
 
     .RegWriteM(RegWriteM),
     .ResultSrcM(ResultSrcM),
     .MemWriteM(MemWriteM),
+    .MemReadM(MemReadM),
     .StrobeM(StrobeM),
+    .Rs1M(Rs1M),
+    .Rs2M(Rs2M),
 
     .ALUResultM(ALUResultM),
     .WriteDataM(WriteDataM),
@@ -354,14 +455,49 @@ EX_MEM_Reg EXMEMReg (
     .PCPlus4M(PCPlus4M)
 );
 
-DataMem DMEM (
+
+
+
+wire [31:0] WData;
+wire LSForward;
+
+assign WData = (LSForward) ? ReadDataW : WriteDataM;
+
+
+
+DCache #(
+    .BLOCK_SIZE(BLOCK_SIZE), 
+    .TOTAL_LINES(NUM_LINES),
+    .ASSOCIATIVITY(2)) 
+    u_dcache (
+        .clk(clk),
+        .rst(rst),
+
+        .address(ALUResultM),
+        .read(MemReadM),
+        .write(MemWriteM),
+        .writeData(WData),
+        .strobe(StrobeM),
+        .readData(ReadDataM),
+        .valid(DCacheValid),
+
+        .memBusy(data_memBusy),
+        .memAddress(data_memAddress),
+        .memRead(data_memRead),
+        .memReadData(data_memReadData),
+        .memWrite(data_memWrite),
+        .memWriteData(data_memWriteData)
+    );
+
+
+/*DataMem DMEM (
     .Address(ALUResultM),
-    .WriteDataM(WriteDataM),
+    .WriteDataM(WData),
     .MemWriteM(MemWriteM),
     .StrobeM(StrobeM),
-    .CLK(CLK),
+    .clk(clk),
     .ReadDataM(ReadDataM)
-);
+);*/
 
 MEM_WB_Reg MEMWBReg (
     .RegWriteM(RegWriteM),
@@ -374,8 +510,9 @@ MEM_WB_Reg MEMWBReg (
     .PcTargetM(PcTargetM),
     .PCPlus4M(PCPlus4M),
 
-    .CLK(CLK),
-    .RST(RST),
+    .clk(clk),
+    .rst(rst),
+    .EN(~DCacheValid),
 
     .RegWriteW(RegWriteW),
     .ResultSrcW(ResultSrcW),
@@ -406,6 +543,8 @@ HazardUnit HU (
     .Rs2D(InstrD[24:20]),
     .Rs1E(Rs1E),
     .Rs2E(Rs2E),
+    .Rs1M(Rs1M),
+    .Rs2M(Rs2M),
     .RdE(RdE),
     .PCSrcE(PCSrcE),
     .ResultSrcE(ResultSrcE),
@@ -415,17 +554,17 @@ HazardUnit HU (
     .RegWriteM(RegWriteM),
     .RdW(RdW),
     .RegWriteW(RegWriteW),
-    .CLK(CLK),
-    .RST(RST),
+    .rst(rst),
 
-    .StallF(StallF),
-    .StallD(StallD),
+    .StallF(HazardStallF),
+    .StallD(HazardStallD),
     .FlushD(FlushD),
     .FlushE(FlushE),
     .ForwardAE(ForwardAE),
     .ForwardBE(ForwardBE),
     .ForwardRs1(ForwardRs1),
-    .ForwardRs2(ForwardRs2)
+    .ForwardRs2(ForwardRs2),
+    .LSForward(LSForward)
 );
 
 

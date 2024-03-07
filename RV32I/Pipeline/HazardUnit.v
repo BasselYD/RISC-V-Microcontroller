@@ -3,6 +3,8 @@ module HazardUnit (
     input       wire        [4:0]       Rs2D,
     input       wire        [4:0]       Rs1E,
     input       wire        [4:0]       Rs2E,
+    input       wire        [4:0]       Rs1M,
+    input       wire        [4:0]       Rs2M,
     input       wire        [4:0]       RdE,
     input       wire                    PCSrcE,
     input       wire        [2:0]       ResultSrcE,
@@ -12,8 +14,7 @@ module HazardUnit (
     input       wire                    RegWriteM,
     input       wire        [4:0]       RdW,
     input       wire                    RegWriteW,
-    input       wire                    CLK,
-    input       wire                    RST,
+    input       wire                    rst,
 
     output      wire                    StallF,
     output      wire                    StallD,
@@ -22,7 +23,8 @@ module HazardUnit (
     output      reg         [2:0]       ForwardAE,
     output      reg         [2:0]       ForwardBE,
     output      reg                     ForwardRs1,
-    output      reg                     ForwardRs2
+    output      reg                     ForwardRs2,
+    output      reg                     LSForward
 );
 
 wire    lwStall;
@@ -104,6 +106,11 @@ always @ (*)
         else    
             ForwardRs2 = 0;
 
+        if (((Rs1M == RdW) || (Rs2M == RdW)) && (ResultSrcW == 3'b001))
+            LSForward = 1;
+        else
+            LSForward = 0;
+
     end
 
 
@@ -111,8 +118,8 @@ assign  lwStall =   ((Rs1D == RdE) || (Rs2D == RdE)) && (ResultSrcE == 3'b001);
 
 assign  StallD  =   lwStall;
 assign  StallF  =   lwStall;
-assign  FlushD  =   PCSrcE | ~RST;
-assign  FlushE  =   PCSrcE | lwStall | ~RST;
+assign  FlushD  =   PCSrcE | ~rst;
+assign  FlushE  =   PCSrcE | lwStall | ~rst;
 
     
 endmodule
