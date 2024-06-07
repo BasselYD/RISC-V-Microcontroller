@@ -21,7 +21,9 @@ module HazardUnit (
     output      wire                    FlushD,
     output      wire                    FlushE,
     output      reg         [2:0]       ForwardAE,
+    output      reg                     ForwardACSR,
     output      reg         [2:0]       ForwardBE,
+    output      reg                     ForwardBCSR,
     output      reg                     ForwardRs1,
     output      reg                     ForwardRs2,
     output      reg                     LSForward
@@ -41,6 +43,11 @@ always @ (*)
                 else if (ResultSrcM == 3'b100)
                     ForwardAE = 3'b100;
 
+                else if (ResultSrcM == 3'b101) begin
+                    ForwardAE = 3'b111;
+                    ForwardACSR = 0;
+                end
+
                 else
                     ForwardAE = 3'b010;
             end
@@ -53,6 +60,11 @@ always @ (*)
 
                 else if (ResultSrcW == 3'b100)
                     ForwardAE = 3'b110;
+
+                else if (ResultSrcW == 3'b101) begin
+                    ForwardAE = 3'b111;
+                    ForwardACSR = 1;
+                end
                     
                 else
                     ForwardAE = 3'b001;
@@ -71,6 +83,11 @@ always @ (*)
                 else if (ResultSrcM == 3'b100)
                     ForwardBE = 3'b100;
 
+                else if (ResultSrcM == 3'b101) begin
+                    ForwardBE = 3'b111;
+                    ForwardBCSR = 0;
+                end
+
                 else
                     ForwardBE = 3'b010;
             end
@@ -83,7 +100,12 @@ always @ (*)
 
                 else if (ResultSrcW == 3'b100)
                     ForwardBE = 3'b110;
-                    
+
+                else if (ResultSrcW == 3'b101) begin
+                    ForwardBE = 3'b111;
+                    ForwardBCSR = 1;
+                end    
+
                 else
                     ForwardBE = 3'b001;
             end

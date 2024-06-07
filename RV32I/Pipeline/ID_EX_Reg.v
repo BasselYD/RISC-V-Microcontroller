@@ -12,12 +12,17 @@ module ID_EX_Reg (
     input       wire                    ALUSrcD,
     input       wire        [1:0]       SLTControlD,
     input       wire        [2:0]       StrobeD,
+    input       wire                    mretD,
+    input       wire        [1:0]       csrOpD,
+    input       wire                    CUexceptionD,
+    input       wire        [3:0]       CUexceptionTypeD,
 
     //RF - Decode
     input       wire        [31:0]      RD1D,
     input       wire        [31:0]      RD2D,
 
     //Instruction - Decode
+    input       wire        [31:0]      InstrD,
     input       wire        [31:0]      PCD,
     input       wire        [4:0]       Rs1D,
     input       wire        [4:0]       Rs2D,
@@ -43,10 +48,14 @@ module ID_EX_Reg (
     output      reg                     ALUSrcE,
     output      reg         [1:0]       SLTControlE,
     output      reg         [2:0]       StrobeE,
+    output      reg                     mretE,
+    output      reg         [1:0]       csrOpE,
+    output      reg                     CUexceptionE,
+    output      reg         [3:0]       CUexceptionTypeE,
 
     //RF - Execute
-    output      wire        [31:0]      RD1E,
-    output      wire        [31:0]      RD2E,
+    output      reg         [31:0]      RD1E,
+    output      reg         [31:0]      RD2E,
 
     //Instruction - Execute
     output      reg         [4:0]       Rs1E,
@@ -54,11 +63,10 @@ module ID_EX_Reg (
     output      reg         [4:0]       RdE,
     output      reg         [31:0]      ExtImmE,
 
+    output      reg         [31:0]      InstrE,
     output      reg         [31:0]      PCE,
     output      reg         [31:0]      PCPlus4E
 );
-
-reg flushReg;
 
 always @ (posedge clk or negedge rst)
     begin
@@ -76,15 +84,20 @@ always @ (posedge clk or negedge rst)
                 ALUSrcE <= 0;
                 SLTControlE <= 0;
                 StrobeE <= 0;
+                RD1E <= 0;
+                RD2E <= 0;
 
-                flushReg <= 0;
-
+                InstrE <= 0;
                 PCE <= 0;
                 Rs1E <= 0;
                 Rs2E <= 0;
                 RdE <= 0;
                 ExtImmE <= 0;
                 PCPlus4E <= 0;
+                mretE <= 0;
+                csrOpE <= 0;
+                CUexceptionE <= 0;
+                CUexceptionTypeE <= 0;
             end
         else if (FLUSH)
             begin
@@ -100,15 +113,20 @@ always @ (posedge clk or negedge rst)
                 ALUSrcE <= 0;
                 SLTControlE <= 0;
                 StrobeE <= 0;
+                RD1E <= 0;
+                RD2E <= 0;
 
-                flushReg <= 1;
-
+                InstrE <= 0;
                 PCE <= 0;
                 Rs1E <= 0;
                 Rs2E <= 0;
                 RdE <= 0;
                 ExtImmE <= 0;
                 PCPlus4E <= 0;
+                mretE <= 0;
+                csrOpE <= 0;
+                CUexceptionE <= 0;
+                CUexceptionTypeE <= 0;
             end
         else
             begin
@@ -126,21 +144,23 @@ always @ (posedge clk or negedge rst)
                         ALUSrcE <= ALUSrcD;
                         SLTControlE <= SLTControlD;
                         StrobeE <= StrobeD;
+                        RD1E <= RD1D;
+                        RD2E <= RD2D;
 
-                        flushReg <= 0;
-
+                        InstrE <= InstrD;
                         PCE <= PCD;
                         Rs1E <= Rs1D;
                         Rs2E <= Rs2D;
                         RdE <= RdD;
                         ExtImmE <= ExtImmD;
                         PCPlus4E <= PCPlus4D;
+                        mretE <= mretD;
+                        csrOpE <= csrOpD;
+                        CUexceptionE <= CUexceptionD;
+                        CUexceptionTypeE <= CUexceptionTypeD;
                     end
             end
     end
 
-//  Forwarded directly since Register File's output is synchronous.
-assign RD1E = (~rst | flushReg) ? 0 : RD1D;
-assign RD2E = (~rst | flushReg) ? 0 : RD2D;
     
 endmodule

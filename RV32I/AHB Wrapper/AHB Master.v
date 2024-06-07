@@ -7,7 +7,7 @@ module AHB_Master (
     input   wire    [31:0]  addr,
     input   wire            write,
     input   wire    [31:0]  wdata,
-    input   wire     [2:0]  transfer,
+    input   wire     [1:0]  transfer,
     output  reg     [31:0]  rdata,
     output  reg             ready,
 
@@ -37,7 +37,7 @@ localparam  IDLE    = 4'b0000,
             WRWAIT  = 4'b1001;
 
 reg [3:0]   currentState, nextState;
-reg [2:0]   transfer_reg;
+reg [1:0]   transfer_reg;
 reg [31:0]  addr_reg, wdata_reg;
 reg [2:0]   counter;
 wire        burstComplete;
@@ -68,11 +68,11 @@ always @ (*) begin
 
         NSEQRD  :   begin 
                         if (HREADY && ~HRESP) begin
-                            if (transfer_reg == 1) begin 
-                                nextState = SEQRD;  //  I-Cache.
+                            if (transfer_reg == 1 || transfer_reg == 2) begin 
+                                nextState = SEQRD;  //  I-Cache or D-Cache.
                             end
                             else begin
-                                nextState = RDWAIT; //  D-Cache or Peripherals.
+                                nextState = RDWAIT; //  Peripherals.
                             end 
                         end
                         else begin
@@ -100,10 +100,24 @@ always @ (*) begin
 
         NSEQWR  :   begin
                         if (HREADY && ~HRESP) begin
-                            nextState = WRWAIT;
+                            if (transfer_reg == 2) begin 
+                                nextState = SEQWR;  //  D-Cache.
+                            end
+                            else begin
+                                nextState = WRWAIT; //  Peripherals.
+                            end 
                         end
                         else begin
                             nextState = NSEQWR;
+                        end
+                    end
+
+        SEQWR   :   begin
+                        if (burstComplete) begin
+                            nextState = WRWAIT;
+                        end
+                        else begin
+                            nextState = SEQWR;
                         end
                     end
 
@@ -126,7 +140,7 @@ end
 
 always @ (*) begin
     rdata = HRDATA;
-    HPROT = 4'b0011;    //  PROT not supported, this values is recommended by ARM.
+    HPROT = 4'b0011;    //  PROT not supported, this value is recommended by ARM.
     case (currentState) 
         IDLE    :   begin
                         HADDR  = 32'b0;
@@ -145,10 +159,10 @@ always @ (*) begin
                         HWDATA = 32'b0;
                         HTRANS = 2'b10; //  NONSEQ.
                         HSIZE  = 3'b010;
-                        if (transfer_reg == 1) begin    //  I-Cache.
-                            HBURST = 3'b101;            //  INCR8  
+                        if (transfer_reg == 1 || transfer_reg == 2) begin   //  I-Cache or D-Cache.
+                            HBURST = 3'b101;                                //  INCR8  
                         end
-                        else begin  //  D-Cache or Peripherals.
+                        else begin  //  Peripherals.
                             HBURST = 3'b000;
                         end
                         ready = (HREADY && ~HRESP);
@@ -158,14 +172,9 @@ always @ (*) begin
                         HADDR  = addr_reg;
                         HWRITE = 0;
                         HWDATA = 32'b0;
-                        HTRANS = 2'b11; //  SEQ.
+                        HTRANS = 2'b11;     //  SEQ.
                         HSIZE  = 3'b010;
-                        if (transfer_reg == 1) begin    //  I-Cache.
-                            HBURST = 3'b101;            //  INCR8  
-                        end
-                        else begin  //  D-Cache or Peripherals.
-                            HBURST = 3'b000;
-                        end
+                        HBURST = 3'b101;    //  INCR8  
                         ready = (HREADY && ~HRESP); 
                     end
 
@@ -173,7 +182,7 @@ always @ (*) begin
                         HADDR  = 0;
                         HWRITE = 0;
                         HWDATA = 32'b0;
-                        HTRANS = 2'b00; //  IDLE.
+                        HTRANS = 2'b00;     //  IDLE.
                         HSIZE  = 3'b010;
                         HBURST = 3'b000;
                         ready = (HREADY && ~HRESP);
@@ -185,18 +194,33 @@ always @ (*) begin
                         HWDATA = 0;
                         HTRANS = 2'b10; //  NONSEQ.
                         HSIZE  = 3'b010;
-                        HBURST = 3'b000;
-                        ready = 0;
+                        if (transfer_reg == 2) begin    //  D-Cache.
+                            HBURST = 3'b101;            //  INCR8  
+                        end
+                        else begin  //  Peripherals.
+                            HBURST = 3'b000;
+                        end
+                        ready = (HREADY && ~HRESP);
+                    end
+
+        SEQWR   :   begin
+                        HADDR  = addr_reg;
+                        HWRITE = 1;
+                        HWDATA = wdata;
+                        HTRANS = 2'b10;     //  SEQ.
+                        HSIZE  = 3'b010;
+                        HBURST = 3'b101;    //  INCR8  
+                        ready = (HREADY && ~HRESP);
                     end
 
         WRWAIT  :   begin
                         HADDR  = 0;
-                        HWRITE = 1;
-                        HWDATA = wdata_reg;
+                        HWRITE = 0;
+                        HWDATA = wdata;
                         HTRANS = 2'b00; //  IDLE.
                         HSIZE  = 3'b010;
                         HBURST = 3'b000;
-                        ready = 0;
+                        ready = (HREADY && ~HRESP);
                     end
 
         default :   begin
@@ -217,18 +241,18 @@ always @ (posedge HCLK or negedge HRESETn) begin
     if (!HRESETn) begin
         transfer_reg <= 0;
         addr_reg <= 0;
-        wdata_reg <= 0;
+        //wdata_reg <= 0;
         counter <= 0;
     end
     else if (currentState == IDLE && transfer != 0) begin
         transfer_reg <= transfer;
         addr_reg <= addr;
-        if (write) begin
-            wdata_reg <= wdata;
-        end
+        //if (write) begin
+        //    wdata_reg <= wdata;
+        //end
         counter <= 0;
     end
-    else if (nextState == SEQRD) begin
+    else if (nextState == SEQRD || nextState == SEQWR) begin
         if ((HREADY && ~HRESP)) begin
             addr_reg <= addr_reg + 4;
             counter <= counter + 1;

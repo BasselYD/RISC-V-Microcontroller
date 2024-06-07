@@ -4,6 +4,8 @@ module BranchLogic (
     input       wire        [2:0]       BranchTypeE,
     input       wire                    Zero,
     input       wire                    LSB,
+    input       wire                    trap,
+    input       wire                    mret,
     output      wire                    PCSrcE
 );
 
@@ -34,7 +36,7 @@ always @ (*)
         endcase
     end
 
-assign  PCSrcE  =   (Condition & BranchE) | JumpE;
+assign  PCSrcE  =   mret | trap | (Condition & BranchE) | JumpE;
 
 
 endmodule

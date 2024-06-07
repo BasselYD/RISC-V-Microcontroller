@@ -1,0 +1,173 @@
+//addi x1, x0, 10 
+00
+a0
+00
+93
+//addi x2, x0, 5  
+00
+50
+01
+13
+//csrrw x3, mscratch, x1  
+34
+00
+91
+f3
+//csrrs x3, mscratch, x2  
+34
+01
+21
+f3
+//csrrc x3, mscratch, x1  
+34
+00
+b1
+f3
+//csrrci x3, mscratch, 5  
+34
+02
+f1
+f3
+//csrrsi x3, mscratch, 10 
+34
+05
+61
+f3
+//csrrwi x3, mscratch, 30 
+34
+0f
+51
+f3
+//ecall
+00
+00
+00
+73
+//csrrwi x3, mscratch, 28
+//34
+//0e
+//51
+//f3
+//addi x7, x0, 19
+01
+30
+03
+93
+//ebreak
+00
+10
+00
+73
+//csrrwi x3, mscratch, 10
+34
+05
+51
+f3
+//lw x6, 0(x7)
+00
+03
+a3
+03
+//addi x10, x0, 20
+01
+40
+05
+13
+//addi x10, x0, 21
+01
+50
+05
+13
+//addi x1, x0, 1
+00
+10
+00
+93
+//slli x5, x1, 16
+01
+00
+92
+93
+//slli x6, x1, 11
+00
+b0
+93
+13
+//or x5, x5, x6
+00
+62
+e2
+b3
+//csrrw x10, mie, x5
+30
+42
+95
+73
+//addi x1, x0, 50
+03
+20
+00
+93
+//csrrwi x3, mscratch, 29
+34
+0e
+d1
+f3
+//addi x1, x0, 51
+03
+30
+00
+93
+
+
+@F000
+//addi x3, x0, 42
+02
+a0
+01
+93
+//csrrsi x4, mepc, 0
+34
+10
+62
+73
+//addi x4, x4, 4
+00
+42
+02
+13
+//csrrw x5, mepc, x4
+34
+12
+12
+f3
+//mret
+30
+20
+00
+73
+
+@F040
+//addi x1, x0, 505
+1f
+90
+00
+93
+//mret
+30
+20
+00
+73
+
+//addi x10, x0, 41
+//02
+//90
+//05
+//13
+//jalr x3, x10, 4
+//00
+//45
+//01
+//e7
+
+

@@ -5,7 +5,7 @@ module DCache_tb;
     // Parameters for D-Cache module
     parameter BLOCK_SIZE = 8;
     parameter TOTAL_LINES = 256;
-    parameter ASSOCIATIVITY = 2;
+    parameter ASSOCIATIVITY = 4;
 
     // Signals
     reg clk;
@@ -63,6 +63,197 @@ module DCache_tb;
         memBusy = 0;
         memReadData = 0;
 
+        //  Test case 1: Read from cache (miss, set 0, word).
+        #20; 
+        address = 32'h00000004; 
+        read = 1; 
+        write = 0; 
+        writeData = 0;
+        strobe = 3'b010; 
+
+        //  Memory response.
+        @memRead
+        memBusy = 1;
+        #20
+        memBusy = 0;
+        memReadData = 256'hAB_CD_12_34_56_78_90_90;
+
+        @valid
+        #10
+        read = 0;
+
+        //  Test case 2: Read from cache (miss, same index, set 1, u-byte).
+        #20; 
+        address = 32'h00001005; 
+        read = 1; 
+        write = 0; 
+        writeData = 0;
+        strobe = 3'b100; 
+
+        //  Memory response.
+        @memRead
+        memBusy = 1;
+        #20
+        memBusy = 0;
+        memReadData = 256'hAA_AA_AA_AA_AA_BB_CC_AA;
+
+        @valid
+        #10
+        read = 0;
+
+        //  Test case 3: Write to cache (miss, same index, set 2, byte).
+        #20; 
+        address = 32'h00031005; 
+        read = 0; 
+        write = 1; 
+        writeData = 8'h49;
+        strobe = 3'b000; 
+
+        //  Memory response.
+        @memRead
+        memBusy = 1;
+        #20
+        memBusy = 0;
+        memReadData = 256'hBB_BB_BB_BB_BB_BB_CC_BB;
+
+        @valid
+        #20
+        write = 0;
+
+        //  Test case 4: Write to cache (miss, same index, set 3, byte).
+        #20; 
+        address = 32'h00051002; 
+        read = 0; 
+        write = 1; 
+        writeData = 16'h6767;
+        strobe = 3'b001; 
+
+        //  Memory response.
+        @memRead
+        memBusy = 1;
+        #20
+        memBusy = 0;
+        memReadData = 256'hBB_BB_BB_BB_BB_BB_CC_BB;
+
+        @valid
+        #20
+        write = 0;
+
+         //  Test case 5: Read from cache (miss, set 0, word).
+        #20; 
+        address = 32'h033000004; 
+        read = 1; 
+        write = 0; 
+        writeData = 0;
+        strobe = 3'b010; 
+
+        //  Memory response.
+        @memRead
+        memBusy = 1;
+        #20
+        memBusy = 0;
+        memReadData = 256'hAB_99_99_99_99_99_99_99;
+
+        @valid
+        #10
+        read = 0;
+
+        //  Test case 6: Read from cache (miss, same index, set 1, u-byte).
+        #20; 
+        address = 32'h70001005; 
+        read = 1; 
+        write = 0; 
+        writeData = 0;
+        strobe = 3'b100; 
+
+        //  Memory response.
+        @memRead
+        memBusy = 1;
+        #20
+        memBusy = 0;
+        memReadData = 256'h45_54_DD_DD_DD_CC_CC_CC;
+
+        @valid
+        #10
+        read = 0;
+
+        //  Test case 7: Read from cache (miss, same index, set 1, u-byte).
+        #20; 
+        address = 32'h90001001; 
+        read = 1; 
+        write = 0; 
+        writeData = 0;
+        strobe = 3'b100; 
+
+        //  Memory response.
+        @memRead
+        memBusy = 1;
+        #20
+        memBusy = 0;
+        memReadData = 256'h00_19_33_66_00_88_99_00;
+
+        @valid
+        #10
+        read = 0;
+
+        //  Test case 8: Read from cache (miss, same index, set 1, u-byte).
+        #20; 
+        address = 32'h99001001; 
+        read = 1; 
+        write = 0; 
+        writeData = 0;
+        strobe = 3'b010; 
+
+        //  Memory response.
+        @memRead
+        memBusy = 1;
+        #20
+        memBusy = 0;
+        memReadData = 256'hFF_FF_FF_FF_EE_EE_EE_EE;
+
+        @valid
+        #10
+        read = 0;
+
+        //  Test case 9: Read from cache (miss, same index, set 1, u-byte).
+        #20; 
+        address = 32'h10101001; 
+        read = 1; 
+        write = 0; 
+        writeData = 0;
+        strobe = 3'b010; 
+
+        //  Memory response.
+        @memRead
+        memBusy = 1;
+        #20
+        memBusy = 0;
+        memReadData = 256'hFF_FF_FF_FF_EE_EE_EE_EE;
+
+        @valid
+        #10
+        read = 0;
+
+        //  Test case 10: Read from cache (miss, same index, set 1, u-byte).
+        #20; 
+        address = 32'h10201001; 
+        read = 1; 
+        write = 0; 
+        writeData = 0;
+        strobe = 3'b010; 
+
+        //  Memory response.
+        @memRead
+        memBusy = 1;
+        #20
+        memBusy = 0;
+        memReadData = 256'h19_09_19_09_EE_CC_EE_CC;
+
+        @valid
+        #10
+        read = 0;
+
+        /*
         //  Test case 1: Read from cache (miss, set 0, word).
         #20; 
         address = 32'h00000004; 
@@ -212,7 +403,7 @@ module DCache_tb;
 
         @valid
         #10
-        read = 0;
+        read = 0;*/
         
         #500
         $stop; // End simulation

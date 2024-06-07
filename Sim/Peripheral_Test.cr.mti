@@ -1,0 +1,474 @@
+{E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_Sampler.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_Sampler.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module UART_Rx_Sampler
+
+Top level modules:
+	UART_Rx_Sampler
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/BranchLogic.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/BranchLogic.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module BranchLogic
+
+Top level modules:
+	BranchLogic
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/Timer/Timer.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/Timer/Timer.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Timer
+
+Top level modules:
+	Timer
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_MUX.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_MUX.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module UART_Tx_MUX
+
+Top level modules:
+	UART_Tx_MUX
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/AHB Wrapper/AHB Master.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/AHB Wrapper/AHB Master.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module AHB_Master
+
+Top level modules:
+	AHB_Master
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/EX_MEM_Reg.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/EX_MEM_Reg.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module EX_MEM_Reg
+
+Top level modules:
+	EX_MEM_Reg
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/IF_ID_Reg.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/IF_ID_Reg.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module IF_ID_Reg
+
+Top level modules:
+	IF_ID_Reg
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/ControlUnit.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/ControlUnit.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module ControlUnit
+
+Top level modules:
+	ControlUnit
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/RV32I.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/RV32I.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module RV32I
+
+Top level modules:
+	RV32I
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/ALU.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/ALU.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module ALU
+
+Top level modules:
+	ALU
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_FSM.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_FSM.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module UART_Rx_FSM
+
+Top level modules:
+	UART_Rx_FSM
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_TOP.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_TOP.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module UART_Tx_TOP
+
+Top level modules:
+	UART_Tx_TOP
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_Counter.v} {2 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_Counter.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module UART_Rx_Counter
+** Warning: E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_Counter.v(25): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+
+** Warning: E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_Counter.v(30): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+
+
+Top level modules:
+	UART_Rx_Counter
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_Bus_Matrix_Generator/verilog/built/AHB_BusMatrix/AHB_BusMatrix_default_slave.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_Bus_Matrix_Generator/verilog/built/AHB_BusMatrix/AHB_BusMatrix_default_slave.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module AHB_BusMatrix_default_slave
+
+Top level modules:
+	AHB_BusMatrix_default_slave
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_Arbiter.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_Arbiter.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module AHB_Arbiter
+
+Top level modules:
+	AHB_Arbiter
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/Memory_Arbiter.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/Memory_Arbiter.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Memory_Arbiter
+
+Top level modules:
+	Memory_Arbiter
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/PCPlus4Adder.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/PCPlus4Adder.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module PCPlus4Adder
+
+Top level modules:
+	PCPlus4Adder
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/GPIO_Controller.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/GPIO_Controller.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module GPIO_Controller
+
+Top level modules:
+	GPIO_Controller
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Mux_2to1.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Mux_2to1.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Mux_2to1
+
+Top level modules:
+	Mux_2to1
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Mux-4to1.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Mux-4to1.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Mux_4to1
+
+Top level modules:
+	Mux_4to1
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_Bus_Matrix_Generator/verilog/built/AHB_BusMatrix/AHB_InputStage.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_Bus_Matrix_Generator/verilog/built/AHB_BusMatrix/AHB_InputStage.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module AHB_InputStage
+
+Top level modules:
+	AHB_InputStage
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/DCache.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/DCache.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module DCache
+
+Top level modules:
+	DCache
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_StpChk.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_StpChk.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module UART_Rx_StpChk
+
+Top level modules:
+	UART_Rx_StpChk
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/Sync_RAM.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/Sync_RAM.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Sync_RAM
+
+Top level modules:
+	Sync_RAM
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/APB_Bridge.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/APB_Bridge.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module APB_Bridge
+
+Top level modules:
+	APB_Bridge
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/Instruction_SRAM_TOP.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/Instruction_SRAM_TOP.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Instruction_SRAM_TOP
+
+Top level modules:
+	Instruction_SRAM_TOP
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_BusMatrix.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_BusMatrix.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module AHB_BusMatrix
+
+Top level modules:
+	AHB_BusMatrix
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_Bus_Matrix_Generator/verilog/built/AHB_BusMatrix/AHB_BusMatrix_lite.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_Bus_Matrix_Generator/verilog/built/AHB_BusMatrix/AHB_BusMatrix_lite.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module AHB_BusMatrix_lite
+
+Top level modules:
+	AHB_BusMatrix_lite
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_ParChk.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_ParChk.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module UART_Rx_ParChk
+
+Top level modules:
+	UART_Rx_ParChk
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/PCTargetAdder.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/PCTargetAdder.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module PCTargetAdder
+
+Top level modules:
+	PCTargetAdder
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/HazardUnit.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/HazardUnit.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module HazardUnit
+
+Top level modules:
+	HazardUnit
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_StrtChk.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_StrtChk.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module UART_Rx_StrtChk
+
+Top level modules:
+	UART_Rx_StrtChk
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_Bus_Matrix_Generator/verilog/built/AHB_BusMatrix/AHB_BusMatrix.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_Bus_Matrix_Generator/verilog/built/AHB_BusMatrix/AHB_BusMatrix.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module AHB_BusMatrix
+
+Top level modules:
+	AHB_BusMatrix
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/MEM_WB_Reg.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/MEM_WB_Reg.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module MEM_WB_Reg
+
+Top level modules:
+	MEM_WB_Reg
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_BusMatrix_lite.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_BusMatrix_lite.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module AHB_BusMatrix_lite
+
+Top level modules:
+	AHB_BusMatrix_lite
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_Bus_Matrix_Generator/verilog/built/AHB_BusMatrix/AHB_Arbiter.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_Bus_Matrix_Generator/verilog/built/AHB_BusMatrix/AHB_Arbiter.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module AHB_Arbiter
+
+Top level modules:
+	AHB_Arbiter
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/System_Top.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/System_Top.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module System_Top
+
+Top level modules:
+	System_Top
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/ID_EX_Reg.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/ID_EX_Reg.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module ID_EX_Reg
+
+Top level modules:
+	ID_EX_Reg
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/SignExtend.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/SignExtend.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module SignExtend
+
+Top level modules:
+	SignExtend
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_ahb_to_isram.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_ahb_to_isram.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module cmsdk_ahb_to_isram
+
+Top level modules:
+	cmsdk_ahb_to_isram
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_ParCalc.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_ParCalc.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module UART_Tx_ParCalc
+
+Top level modules:
+	UART_Tx_ParCalc
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_fpga_isram.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_fpga_isram.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module cmsdk_fpga_isram
+
+Top level modules:
+	cmsdk_fpga_isram
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_TOP.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_TOP.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module UART_Rx_TOP
+
+Top level modules:
+	UART_Rx_TOP
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_Deserializer.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_Deserializer.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module UART_Rx_Deserializer
+
+Top level modules:
+	UART_Rx_Deserializer
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/APB_decoder.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/APB_decoder.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module APB_decoder
+
+Top level modules:
+	APB_decoder
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/Timer/Timer_APB.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/Timer/Timer_APB.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Timer_APB
+
+Top level modules:
+	Timer_APB
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_Bus_Matrix_Generator/verilog/built/AHB_BusMatrix/AHB_OutputStage.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_Bus_Matrix_Generator/verilog/built/AHB_BusMatrix/AHB_OutputStage.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module AHB_OutputStage
+
+Top level modules:
+	AHB_OutputStage
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_FSM.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_FSM.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module UART_Tx_FSM
+
+Top level modules:
+	UART_Tx_FSM
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Zicsr.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Zicsr.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Zicsr
+
+Top level modules:
+	Zicsr
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_ahb_to_dsram.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_ahb_to_dsram.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module cmsdk_ahb_to_dsram
+
+Top level modules:
+	cmsdk_ahb_to_dsram
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Testbenches/Test.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Testbenches/Test.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Test_tb
+
+Top level modules:
+	Test_tb
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/cmsdk_apb_slave_mux.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/cmsdk_apb_slave_mux.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module cmsdk_apb_slave_mux
+
+Top level modules:
+	cmsdk_apb_slave_mux
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_Serializer.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_Serializer.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module UART_Tx_Serializer
+
+Top level modules:
+	UART_Tx_Serializer
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_fpga_dsram.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_fpga_dsram.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module cmsdk_fpga_dsram
+
+Top level modules:
+	cmsdk_fpga_dsram
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/RegisterFile.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/RegisterFile.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Register_File
+
+Top level modules:
+	Register_File
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/DATA_SRAM_TOP.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/DATA_SRAM_TOP.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module DATA_SRAM_TOP
+
+Top level modules:
+	DATA_SRAM_TOP
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/ICache.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/ICache.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module ICache
+
+Top level modules:
+	ICache
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/Async_FIFO.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/Async_FIFO.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Async_FIFO
+
+Top level modules:
+	Async_FIFO
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_Bus_Matrix_Generator/verilog/built/AHB_BusMatrix/AHB_DecoderStageS0.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_Bus_Matrix_Generator/verilog/built/AHB_BusMatrix/AHB_DecoderStageS0.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module AHB_DecoderStageS0
+
+Top level modules:
+	AHB_DecoderStageS0
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/Timer/ClkDiv.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/Timer/ClkDiv.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module ClkDiv
+
+Top level modules:
+	ClkDiv
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Mux-8to1.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Mux-8to1.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Mux_8to1
+
+Top level modules:
+	Mux_8to1
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/PC.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/PC.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module PC
+
+Top level modules:
+	PC
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_InputStage.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_InputStage.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module AHB_InputStage
+
+Top level modules:
+	AHB_InputStage
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_BusMatrix_default_slave.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_BusMatrix_default_slave.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module AHB_BusMatrix_default_slave
+
+Top level modules:
+	AHB_BusMatrix_default_slave
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_DecoderStageS0.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_DecoderStageS0.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module AHB_DecoderStageS0
+
+Top level modules:
+	AHB_DecoderStageS0
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_OutputStage.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_OutputStage.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module AHB_OutputStage
+
+Top level modules:
+	AHB_OutputStage
+
+} {} {}} {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/APB_Subsystem.v} {1 {vlog -work work {E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/APB_Subsystem.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module APB_Subsystem
+
+Top level modules:
+	APB_Subsystem
+
+} {} {}}

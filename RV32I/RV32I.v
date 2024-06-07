@@ -10,7 +10,11 @@ module RV32I (
     output  wire    [31:0]      addr,
     output  wire                write,
     output  wire    [31:0]      wdata,
-    output  wire    [2:0]       transfer
+    output  wire    [1:0]       transfer,
+
+    input   wire                NMI,
+    input   wire                timerInterrupt,
+    input   wire    [15:0]      externalInterrupts
 );
 
 //----------Internal Signals----------//
@@ -65,6 +69,7 @@ wire            ALUSrcE;
 wire    [1:0]   SLTControlE;
 wire    [2:0]   StrobeE;
 
+wire    [31:0]  InstrE, InstrM;
 wire    [31:0]  PCE;
 wire    [31:0]  PCPlus4E;
 wire    [31:0]  RD1E;
@@ -78,7 +83,9 @@ wire    [31:0]  PcTargetE;
 
 wire            FlushE; 
 wire    [2:0]   ForwardAE;
+wire            ForwardACSR;
 wire    [2:0]   ForwardBE;
+wire            ForwardBCSR;
 wire            ForwardRs1;
 wire            ForwardRs2;
 wire    [31:0]  RD1Src;
@@ -139,11 +146,36 @@ wire                                    inst_memRead;
 wire    [31:0]                      data_memAddress;
 wire                                data_memRead;
 wire                                data_memWrite;
-wire    [31:0]                      data_memWriteData;
-wire    [2:0]                       data_strobe;
+wire    [(BLOCK_SIZE*8) - 1:0]      data_memWriteData;
 wire    [(BLOCK_SIZE*8) - 1:0]      data_memReadData;
 wire                                data_memBusy;
 
+wire    [31:0]                      peripheral_memReadData;
+wire                                peripheral_memBusy;
+wire                                peripheral_flush;
+
+wire [31:0] WData;
+wire LSForward;
+wire isPeripheralM, isPeripheralE;
+wire [31:0] DCacheReadData;
+
+wire        [1:0]       csrOp, csrOpE;
+wire                    CUexceptionD, CUexceptionE, exceptionE, trapE, interrupt;
+wire        [3:0]       CUexceptionTypeD, CUexceptionTypeE, exceptionType;  
+wire        [31:0]      csrDataD,csrDataE,csrDataM,csrDataW;
+wire        [31:0]      exceptionHandlerPCD, exceptionHandlerPCE;
+wire                    mret, mretE;
+
+wire    [31:0]  JumpPcTarget;
+wire    [31:0]  ExceptionPcTarget;
+
+wire    BLPCSrcE;
+wire    instMisaligned_c;
+reg     instMisaligned;
+reg     storeMisaligned;
+reg     loadMisaligned;
+
+wire stalled = ~ICacheValid || ~DCacheValid || peripheral_memBusy;
 
 //Program Counter
 PC  PC  (
@@ -171,9 +203,19 @@ Memory_Arbiter #(
     .data_memRead(data_memRead),
     .data_memWrite(data_memWrite),
     .data_memWriteData(data_memWriteData),
-    .data_strobe(data_strobe),
     .data_memReadData(data_memReadData),
     .data_memBusy(data_memBusy),
+
+    // PERIPHERAL INTERFACE
+    .instrM(InstrM),
+    .peripheral_memAddress(ALUResultM),
+    .peripheral_memRead(isPeripheralM && MemReadM && ~peripheral_memBusy),
+    .peripheral_memReadData(peripheral_memReadData),
+    .peripheral_memWrite(isPeripheralM && MemWriteM && ~peripheral_memBusy),
+    .peripheral_memWriteData(WData),
+    .peripheral_strobe(StrobeM),
+    .peripheral_memBusy(peripheral_memBusy),
+    .peripheral_flush(peripheral_flush),
 
 
     //  AHB ADAPTER INTERFACE
@@ -209,8 +251,8 @@ ICache #(
 );
 
 
-assign StallF = HazardStallF | ~ICacheValid | ~DCacheValid; 
-assign StallD = HazardStallD | ~ICacheValid | ~DCacheValid; 
+assign StallF = HazardStallF | ~ICacheValid | ~DCacheValid | peripheral_memBusy /*| peripheral_flush*/; 
+assign StallD = HazardStallD | ~ICacheValid | ~DCacheValid | peripheral_memBusy /*| peripheral_flush*/; 
 
 
 PCPlus4Adder PCAdder (
@@ -234,10 +276,7 @@ IF_ID_Reg   IFIDReg (
 
 //Control Unit
 ControlUnit CU (
-    .OP(InstrD[6:0]),
-    .funct3(InstrD[14:12]),
-    .funct7_5(InstrD[30]),
-
+    .Instr(InstrD),
     .RegWriteD(RegWriteD),
     .ResultSrcD(ResultSrcD),
     .MemWriteD(MemWriteD),
@@ -250,14 +289,18 @@ ControlUnit CU (
     .ALUSrcD(ALUSrcD),
     .SLTControlD(SLTControlD),
     .ImmSrcD(ImmSrcD),
-    .StrobeD(StrobeD)
+    .StrobeD(StrobeD),
+    .csrOp(csrOp),
+    .exception(CUexceptionD),
+    .exceptionType(CUexceptionTypeD),
+    .mret(mret)
 );
 
 //Register File
 Register_File #(.WIDTH(32), .DEPTH_BITS(5))  RF (
     .WrData(ResultW),
     .WrAddress(RdW),
-    .WrEn(RegWriteW),
+    .WrEn(RegWriteW & ~stalled),
 
     .RdAddress1(InstrD[19:15]),
     .RdAddress2(InstrD[24:20]),
@@ -276,6 +319,10 @@ SignExtend  Extend (
     .ExtImmD(ExtImmD)
 );
 
+//reg peripheral_flush_reg;
+//always @ (posedge clk) begin
+//    peripheral_flush_reg <= peripheral_flush;
+//end
 //Decode-Execute Register
 ID_EX_Reg   IDEXReg (
     .RegWriteD(RegWriteD),
@@ -290,10 +337,15 @@ ID_EX_Reg   IDEXReg (
     .ALUSrcD(ALUSrcD),
     .SLTControlD(SLTControlD),
     .StrobeD(StrobeD),
+    .mretD(mret),
+    .csrOpD(csrOp),
+    .CUexceptionD(CUexceptionD),
+    .CUexceptionTypeD(CUexceptionTypeD),
 
     .RD1D(RD1Src),
     .RD2D(RD2Src),
     
+    .InstrD(InstrD),
     .PCD(PCD),
     .Rs1D(InstrD[19:15]),
     .Rs2D(InstrD[24:20]),
@@ -303,7 +355,7 @@ ID_EX_Reg   IDEXReg (
 
     .rst(rst),
     .clk(clk),
-    .EN(~DCacheValid),
+    .EN(DCacheValid && ~peripheral_memBusy && ~instMisaligned_c /*&& ~peripheral_flush*/),
     .FLUSH(FlushE),
 
     .RegWriteE(RegWriteE),
@@ -318,6 +370,10 @@ ID_EX_Reg   IDEXReg (
     .ALUSrcE(ALUSrcE),
     .SLTControlE(SLTControlE),
     .StrobeE(StrobeE),
+    .mretE(mretE),
+    .csrOpE(csrOpE),
+    .CUexceptionE(CUexceptionE),
+    .CUexceptionTypeE(CUexceptionTypeE),
 
     .RD1E(RD1E),
     .RD2E(RD2E),
@@ -327,8 +383,37 @@ ID_EX_Reg   IDEXReg (
     .RdE(RdE),
     .ExtImmE(ExtImmE),
 
+    .InstrE(InstrE),
     .PCE(PCE),
     .PCPlus4E(PCPlus4E)
+);
+
+
+
+wire [31:0] wCSRData;
+assign wCSRData = InstrE[14] ? {27'b0, InstrE[19:15]} : SrcAE;
+
+assign exceptionE = CUexceptionE | instMisaligned | loadMisaligned | storeMisaligned;
+assign exceptionType = instMisaligned ? 3'd0 : loadMisaligned ? 3'd4 : storeMisaligned ? 3'd6 : CUexceptionTypeE;
+assign trapE = exceptionE | interrupt;
+
+Zicsr u_CSR (
+    .clk(clk),
+    .reset(rst),
+    .index(mretE ? 12'h341 : InstrE[31:20]),
+    .data(wCSRData),
+    .opcode(csrOpE),
+    .mret(mretE),
+    .exception(exceptionE),
+    .exceptionType(exceptionType),
+    .exceptionPC(exceptionE ? PCE : PCD),
+    .NMI(NMI),
+    .timerInterrupt(timerInterrupt),
+    .externalInterrupts(externalInterrupts),
+    .stalled(stalled),
+    .interrupt_reg(interrupt),
+    .csrData(csrDataE),
+    .nextPC(exceptionHandlerPCE)
 );
 
 //PC Target Adder
@@ -346,7 +431,7 @@ Mux_8to1 ForwardAMux (
     .I4(PcTargetM),
     .I5(ExtImmW),
     .I6(PcTargetW),
-    .I7(0),
+    .I7(ForwardACSR ? csrDataW : csrDataM),
     .SEL(ForwardAE),
     .Y(SrcAE)
 );
@@ -359,7 +444,7 @@ Mux_8to1 ForwardBMux (
     .I4(PcTargetM),
     .I5(ExtImmW),
     .I6(PcTargetW),
-    .I7(0),
+    .I7(ForwardBCSR ? csrDataW : csrDataM),
     .SEL(ForwardBE),
     .Y(WriteDataE)
 );
@@ -396,10 +481,29 @@ ALU ALU (
     .Flags(Flags)      
 );
 
+assign instMisaligned_c = (!trapE  && BLPCSrcE && |PcTargetE[1:0]);
+always @ (posedge clk) begin
+    instMisaligned <= instMisaligned_c;
+end
+
 Mux_2to1 PCTargetMux (
     .I0(PcTargetAdd),
-    .I1({ALUResultE[31:1], 1'b0}),
+    .I1(ALUResultE), //{ALUResultE[31:1], 1'b0}
     .SEL(JumpTypeE),
+    .Y(JumpPcTarget)
+);
+
+Mux_2to1 ExceptionPCTargetMux (
+    .I0(JumpPcTarget),
+    .I1(exceptionHandlerPCE),
+    .SEL(trapE),
+    .Y(ExceptionPcTarget)
+);
+
+Mux_2to1 MRETPCTargetMux (
+    .I0(ExceptionPcTarget),
+    .I1(csrDataE),
+    .SEL(mretE),
     .Y(PcTargetE)
 );
 
@@ -416,8 +520,48 @@ BranchLogic BL (
     .BranchTypeE(BranchTypeE),
     .Zero(Flags[3]),
     .LSB(ALUResultE[0]),
-    .PCSrcE(PCSrcE)
+    .trap(trapE),
+    .mret(mretE),
+    .PCSrcE(BLPCSrcE)
 );
+
+assign PCSrcE = BLPCSrcE & ~instMisaligned_c && ~stalled;
+
+assign isPeripheralE = (ALUResultE[31:28] > 3 /*32'h3FFFFFFF*/) && (MemReadE | MemWriteE);
+
+always @(*) begin
+    if (MemReadE && ~isPeripheralE) begin
+        //  Word.
+        if (StrobeE[1])
+            loadMisaligned = |ALUResultE[1:0];
+
+        //  Halfword.
+        else if (StrobeE[0])
+            loadMisaligned = ALUResultE[0];
+
+        else
+            loadMisaligned = 0;
+    end
+    else begin
+        loadMisaligned = 0;
+    end
+
+    if (MemWriteE && ~isPeripheralE) begin
+        //  Word.
+        if (StrobeE[1])
+            storeMisaligned = |ALUResultE[1:0];
+
+        //  Halfword.
+        else if (StrobeE[0])
+            storeMisaligned = ALUResultE[0];
+            
+        else
+            storeMisaligned = 0;
+    end
+    else begin
+        storeMisaligned = 0;
+    end
+end
 
 EX_MEM_Reg EXMEMReg (
     .RegWriteE(RegWriteE),
@@ -425,6 +569,7 @@ EX_MEM_Reg EXMEMReg (
     .MemWriteE(MemWriteE),
     .MemReadE(MemReadE),
     .StrobeE(StrobeE),
+    .isPeripheralE(isPeripheralE),
     .Rs1E(Rs1E),
     .Rs2E(Rs2E),
 
@@ -434,16 +579,21 @@ EX_MEM_Reg EXMEMReg (
     .ExtImmE(ExtImmE),
     .PcTargetE(PcTargetE),
     .PCPlus4E(PCPlus4E),
+    .csrDataE(csrDataE),
+    .InstrE(InstrE),
 
     .clk(clk),
     .rst(rst),
-    .EN(~DCacheValid),
+    .EN(DCacheValid && ~peripheral_memBusy && ~instMisaligned_c && ~instMisaligned && ~loadMisaligned && ~storeMisaligned),
+    .FLUSH(1'b0),
 
+    .InstrM(InstrM),
     .RegWriteM(RegWriteM),
     .ResultSrcM(ResultSrcM),
     .MemWriteM(MemWriteM),
     .MemReadM(MemReadM),
     .StrobeM(StrobeM),
+    .isPeripheralM(isPeripheralM),
     .Rs1M(Rs1M),
     .Rs2M(Rs2M),
 
@@ -452,17 +602,15 @@ EX_MEM_Reg EXMEMReg (
     .RdM(RdM),
     .ExtImmM(ExtImmM),
     .PcTargetM(PcTargetM),
-    .PCPlus4M(PCPlus4M)
+    .PCPlus4M(PCPlus4M),
+    .csrDataM(csrDataM)
 );
 
 
 
 
-wire [31:0] WData;
-wire LSForward;
-
 assign WData = (LSForward) ? ReadDataW : WriteDataM;
-
+assign ReadDataM = isPeripheralM ? peripheral_memReadData : DCacheReadData;
 
 
 DCache #(
@@ -474,11 +622,11 @@ DCache #(
         .rst(rst),
 
         .address(ALUResultM),
-        .read(MemReadM),
-        .write(MemWriteM),
+        .read(MemReadM && ~isPeripheralM),
+        .write(MemWriteM && ~isPeripheralM),
         .writeData(WData),
         .strobe(StrobeM),
-        .readData(ReadDataM),
+        .readData(DCacheReadData),
         .valid(DCacheValid),
 
         .memBusy(data_memBusy),
@@ -509,10 +657,11 @@ MEM_WB_Reg MEMWBReg (
     .ExtImmM(ExtImmM),
     .PcTargetM(PcTargetM),
     .PCPlus4M(PCPlus4M),
+    .csrDataM(csrDataM),
 
     .clk(clk),
     .rst(rst),
-    .EN(~DCacheValid),
+    .EN(DCacheValid && ~peripheral_memBusy),
 
     .RegWriteW(RegWriteW),
     .ResultSrcW(ResultSrcW),
@@ -522,7 +671,8 @@ MEM_WB_Reg MEMWBReg (
     .RdW(RdW),
     .ExtImmW(ExtImmW),
     .PcTargetW(PcTargetW),
-    .PCPlus4W(PCPlus4W)
+    .PCPlus4W(PCPlus4W),
+    .csrDataW(csrDataW)
 );
 
 Mux_8to1 WriteBackMux (
@@ -531,7 +681,7 @@ Mux_8to1 WriteBackMux (
     .I2(PCPlus4W),
     .I3(ExtImmW),
     .I4(PcTargetW),
-    .I5(0),
+    .I5(csrDataW),
     .I6(0),
     .I7(0),
     .SEL(ResultSrcW),
@@ -561,7 +711,9 @@ HazardUnit HU (
     .FlushD(FlushD),
     .FlushE(FlushE),
     .ForwardAE(ForwardAE),
+    .ForwardACSR(ForwardACSR),
     .ForwardBE(ForwardBE),
+    .ForwardBCSR(ForwardBCSR),
     .ForwardRs1(ForwardRs1),
     .ForwardRs2(ForwardRs2),
     .LSForward(LSForward)

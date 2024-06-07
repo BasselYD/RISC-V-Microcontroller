@@ -31,26 +31,18 @@ localparam INDEX_WIDTH  = $clog2(NUM_LINES);
 localparam TAG_WIDTH    = 32 - OFFSET_WIDTH - INDEX_WIDTH;
 
 
-//reg     [TAG_WIDTH-1:0]         cacheTag    [ASSOCIATIVITY-1:0]  [NUM_LINES-1:0];
-//reg                             cacheValid  [ASSOCIATIVITY-1:0]  [NUM_LINES-1:0];
-//reg                             cacheDirty  [ASSOCIATIVITY-1:0]  [NUM_LINES-1:0];
-//reg     [3:0]       cacheLRU    [NUM_LINES-1:0] [ASSOCIATIVITY-1:0];
-
-
 wire    [7:0]                   cacheDataReg    [ASSOCIATIVITY-1:0] [BLOCK_SIZE-1:0];
 wire    [TAG_WIDTH-1:0]         cacheTagReg     [ASSOCIATIVITY-1:0];
 wire                            cacheValidReg   [ASSOCIATIVITY-1:0];
 wire                            cacheDirtyReg   [ASSOCIATIVITY-1:0];
-wire    [3:0]                   cacheLRUReg     [ASSOCIATIVITY-1:0];
 
 
-localparam  IDLE        = 3'b000,
-            FINDLRU     = 3'b001, 
-            UPDATEMEM   = 3'b010, 
-            WRWAIT      = 3'b011,      
-            READMEM     = 3'b100,
-            RDWAIT      = 3'b101,
-            UPDATECACHE = 3'b110;
+localparam  IDLE        = 3'b000, 
+            UPDATEMEM   = 3'b001, 
+            WRWAIT      = 3'b010,      
+            READMEM     = 3'b011,
+            RDWAIT      = 3'b100,
+            UPDATECACHE = 3'b101;
 
 reg [2:0]   currentState, nextState;
 
@@ -67,9 +59,7 @@ reg    [ASSOCIATIVITY-1:0] fill;
 reg [$clog2(ASSOCIATIVITY):0] hit_id;   //  Extra bit
 reg [ASSOCIATIVITY-1:0] hits;
 reg [$clog2(ASSOCIATIVITY)-1:0] LRU_id;
-wire LRU_found;
-reg order;
-reg [$clog2(ASSOCIATIVITY):0] counter;
+
 reg confirmWrite;
 reg writeBlock [BLOCK_SIZE-1:0];
 reg writeAssoc [ASSOCIATIVITY-1:0];
@@ -80,7 +70,21 @@ integer i,j,k,l,m,n,o,p;
 wire   [7:0]   memReadDataPacked    [BLOCK_SIZE-1:0];
 reg    [7:0]   memWriteDataPacked    [BLOCK_SIZE-1:0];
 
+wire    [ASSOCIATIVITY-1:0] cacheLRUReg;
+reg     [ASSOCIATIVITY-1:0] MRU_Bits;
+reg     [ASSOCIATIVITY-1:0] MRU_Bits_reg;
+wire cacheLRUReg_2;
+wire LRU_temp;
+
 genvar x,y;
+generate
+    for (x = 0; x < BLOCK_SIZE; x = x + 1) begin : x1
+        assign memReadDataPacked[x] = memReadData[((BLOCK_SIZE-x)*8)-1 : ((BLOCK_SIZE-x-1)*8)];
+
+        assign memWriteData[((BLOCK_SIZE-x)*8)-1 : ((BLOCK_SIZE-x-1)*8)] = memWriteDataPacked[x];
+    end
+endgenerate
+
 generate
     for (x = 0; x < ASSOCIATIVITY; x = x + 1) begin : ASSOC_ROW
         for (y = 0; y < BLOCK_SIZE; y = y + 1) begin : BLOCKS_COLUMN
@@ -107,16 +111,6 @@ generate
             .data_out(cacheTagReg[x])
         );
 
-        Sync_RAM #(
-            .ADDR_WIDTH(INDEX_WIDTH),
-            .DATA_WIDTH(4)
-        ) cacheLRU (
-            .clk(clk),
-            .addr(indexIn),
-            .data_in((cacheValidReg[x] == 1'b0) ? 4'b0 : (cacheLRUReg[x] + 1'b1)),
-            .write_enable((cacheValidReg[x] == 1'b0) || (hits[x])),
-            .data_out(cacheLRUReg[x])
-        );
 
         Sync_RAM #(
             .ADDR_WIDTH(INDEX_WIDTH),
@@ -139,155 +133,38 @@ generate
             .write_enable(fill[x] || (confirmWrite && hits[x])),
             .data_out(cacheDirtyReg[x])
         );
+
+
+        if (ASSOCIATIVITY == 2) begin
+            if (x == 0) begin
+                Sync_RAM #(
+                    .ADDR_WIDTH(INDEX_WIDTH),
+                    .DATA_WIDTH(1)
+                ) cacheLRU (
+                    .clk(clk),
+                    .addr(indexIn),
+                    .data_in(~hit_id[0]),
+                    .write_enable((hit_id != ASSOCIATIVITY)),
+                    .data_out(LRU_temp)
+                );
+                assign cacheLRUReg_2 = (!cacheValidReg[1]) ? (!cacheValidReg[0]) ? 1'b0 : 1'b1 : LRU_temp;
+            end    
+        end
+        else if (ASSOCIATIVITY > 2) begin
+            Sync_RAM #(
+                .ADDR_WIDTH(INDEX_WIDTH),
+                .DATA_WIDTH(1)
+            ) cacheLRU (
+                .clk(clk),
+                .addr(indexIn),
+                .data_in(MRU_Bits_reg[x]),
+                .write_enable((hit_id != ASSOCIATIVITY)),
+                .data_out(cacheLRUReg[x])
+            );
+        end
         
     end
 endgenerate
-
-generate
-    for (x = 0; x < BLOCK_SIZE; x = x + 1) begin : x1
-        assign memReadDataPacked[x] = memReadData[((BLOCK_SIZE-x)*8)-1 : ((BLOCK_SIZE-x-1)*8)];
-
-        assign memWriteData[((BLOCK_SIZE-x)*8)-1 : ((BLOCK_SIZE-x-1)*8)] = memWriteDataPacked[x];
-    end
-endgenerate
-
-
-//  Handling Cache itself.
-always @ (negedge clk or negedge rst) begin
-    if (!rst) begin
-        counter <= 1;
-        LRU_id <= 0;
-    end
-
-    else begin
-        for (i = 0; i < ASSOCIATIVITY; i = i + 1) begin : x2
-            //cacheTagReg[i]   <= cacheTag[i][indexIn];
-            //cacheValidReg[i] <= cacheValid[i][indexIn];
-            //cacheDirtyReg[i] <= cacheDirty[i][indexIn];
-            //cacheLRUReg[i]   <= cacheLRU[indexIn][i];
-        end  
-
-        if (order) begin
-            if (counter == ASSOCIATIVITY) begin
-                counter <= 1;   
-                LRU_id <= 0;    
-            end
-            else begin
-                if (cacheLRUReg[counter] < cacheLRUReg[LRU_id]) begin
-                    LRU_id <= counter;
-                end
-                counter <= counter + 1'b1;
-            end
-        end
-    end
-end
-
-assign LRU_found = (counter == ASSOCIATIVITY);
-
-
-/*always @ (negedge clk or negedge rst) begin
-    j = 0;
-    if (!rst) begin
-        for (k = 0; k < ASSOCIATIVITY; k = k + 1) begin : z2
-            for (j = 0; j < NUM_LINES; j = j + 1) begin: z3
-                cacheValid[k][j] <= 0;
-                //cacheTag[k][j] <= 0;
-                cacheDirty[k][j] <= 0;
-                //cacheLRU[j][k] <= 0;
-            end
-        end
-    end
-    else begin
-        for (k = 0; k < ASSOCIATIVITY; k = k + 1) begin : x4
-            if (fill[k]) begin
-                cacheValid[k][indexIn]  <= 1;
-                //cacheTag[k][indexIn]    <= tagIn;
-                cacheDirty[k][indexIn]  <= 0;
-            end
-            if (cacheValidReg[k] != 1) begin
-                //cacheLRU[indexIn][k] <= 0;
-            end
-        end  
-    
-        if (hit_id != ASSOCIATIVITY) begin
-            //cacheLRU[indexIn][hit_id] <= cacheLRU[indexIn][hit_id] + 1'b1; 
-        end
-    
-    
-        if (confirmWrite) begin
-            cacheDirty[hit_id][indexIn] <= 1'b1;
-        end
-    end
-end*/
-
-always @ (*) begin
-    l = 0;
-    m = 0;
-    for (l = 0; l < BLOCK_SIZE; l = l + 1) begin : z
-        writeBlock[l] = 0;
-        writeDataPacked[l] = 0;
-    end
-    for (m = 0; m < ASSOCIATIVITY; m = m + 1) begin :y1
-        writeAssoc[m] = 0;
-    end
-    if (confirmWrite) begin
-        for (m = 0; m < ASSOCIATIVITY; m = m + 1) begin :y2
-            writeAssoc[m] = (m == hit_id);
-        end
-        case (strobe) 
-        //sb
-        3'b000          :       begin
-                                    writeBlock[offsetIn] = 1;
-                                    writeDataPacked[offsetIn] = writeData[7:0];
-                                    //cacheData[hit_id][indexIn][offsetIn] <= writeData[7:0];
-                                end 
-
-        //sh
-        3'b001          :       begin
-                                    writeBlock[(offsetIn & {{(OFFSET_WIDTH-1){1'b1}},(1'b0)})] = 1;
-                                    writeBlock[(offsetIn & {{(OFFSET_WIDTH-1){1'b1}},(1'b0)})+1] = 1;
-
-                                    writeDataPacked[(offsetIn & {{(OFFSET_WIDTH-1){1'b1}},(1'b0)})]   = writeData[15:8];
-                                    writeDataPacked[(offsetIn & {{(OFFSET_WIDTH-1){1'b1}},(1'b0)})+1] = writeData[7:0];
-                                    //{cacheData[hit_id][indexIn][(offsetIn & (1'b0))],
-                                    // cacheData[hit_id][indexIn][(offsetIn & (1'b0))+1]} <= writeData[15:0];
-                                end 
-
-        //sw
-        3'b010          :       begin
-                                    writeBlock[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})]   = 1;
-                                    writeBlock[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+1] = 1;
-                                    writeBlock[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+2] = 1;
-                                    writeBlock[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+3] = 1;
-
-                                    writeDataPacked[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})]   = writeData[31:24];
-                                    writeDataPacked[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+1] = writeData[23:16];
-                                    writeDataPacked[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+2] = writeData[15:8];
-                                    writeDataPacked[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+3] = writeData[7:0];
-                                    //{cacheData[hit_id][indexIn][(offsetIn & (2'b00))], 
-                                    // cacheData[hit_id][indexIn][(offsetIn & (2'b00))+1],
-                                    // cacheData[hit_id][indexIn][(offsetIn & (2'b00))+2],
-                                    // cacheData[hit_id][indexIn][(offsetIn & (2'b00))+3]} <= writeData;
-                                end 
-
-        default         :       begin
-                                    writeBlock[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})]   = 1;
-                                    writeBlock[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+1] = 1;
-                                    writeBlock[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+2] = 1;
-                                    writeBlock[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+3] = 1;
-
-                                    writeDataPacked[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})]   = writeData[31:24];
-                                    writeDataPacked[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+1] = writeData[23:16];
-                                    writeDataPacked[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+2] = writeData[15:8];
-                                    writeDataPacked[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+3] = writeData[7:0];
-                                    //{cacheData[hit_id][indexIn][(offsetIn & (2'b00))], 
-                                    // cacheData[hit_id][indexIn][(offsetIn & (2'b00))+1],
-                                    // cacheData[hit_id][indexIn][(offsetIn & (2'b00))+2],
-                                    // cacheData[hit_id][indexIn][(offsetIn & (2'b00))+3]} <= writeData;
-                                end 
-        endcase
-    end
-end
 
 
 //  Hit/Miss Detection.
@@ -317,10 +194,116 @@ always @ (*) begin
         hit_id = o;
       end
     end
-    //hit_id = (hits == 0) ? ASSOCIATIVITY : hits;    //
 end
 
 
+//  Handling LRU (generic case).
+generate
+    if (ASSOCIATIVITY == 1) begin
+        always @(*) begin
+            LRU_id = 0;
+        end
+    end
+    else if (ASSOCIATIVITY == 2) begin
+        always @(*) begin
+            LRU_id = cacheLRUReg_2;
+        end
+    end
+    else if (ASSOCIATIVITY > 2) begin
+        always @(*) begin
+            MRU_Bits = cacheLRUReg;
+            LRU_id = 0;
+            if (hit_id != ASSOCIATIVITY) begin
+                MRU_Bits[hit_id] = 1;
+                    if (&MRU_Bits) begin
+                        for (o = 0; o < ASSOCIATIVITY; o = o + 1) begin
+                            if (o != hit_id) begin
+                                MRU_Bits[o] = 0;
+                            end
+                        end
+                    end
+                    else begin
+                        for (o = 0; o < ASSOCIATIVITY; o = o + 1) begin
+                            if (o != hit_id) begin
+                                MRU_Bits[o] = cacheLRUReg[o];
+                            end
+                        end
+                    end
+                end     
+            else begin
+                LRU_id = 0;
+                for (o = 0; o < ASSOCIATIVITY; o = o + 1) begin
+                    if (MRU_Bits[o] == 1'b0) begin
+                        LRU_id = o;
+                    end
+                end
+            end
+        end
+        always @(posedge clk) begin
+            MRU_Bits_reg <= MRU_Bits;
+        end
+    end
+endgenerate
+
+
+
+always @ (*) begin
+    l = 0;
+    m = 0;
+    for (l = 0; l < BLOCK_SIZE; l = l + 1) begin : z
+        writeBlock[l] = 0;
+        writeDataPacked[l] = 0;
+    end
+    for (m = 0; m < ASSOCIATIVITY; m = m + 1) begin :y1
+        writeAssoc[m] = 0;
+    end
+    if (confirmWrite) begin
+        for (m = 0; m < ASSOCIATIVITY; m = m + 1) begin :y2
+            writeAssoc[m] = (m == hit_id);
+        end
+        case (strobe) 
+        //sb
+        3'b000          :       begin
+                                    writeBlock[offsetIn] = 1;
+                                    writeDataPacked[offsetIn] = writeData[7:0];
+                                end 
+
+        //sh
+        3'b001          :       begin
+                                    writeBlock[(offsetIn & {{(OFFSET_WIDTH-1){1'b1}},(1'b0)})] = 1;
+                                    writeBlock[(offsetIn & {{(OFFSET_WIDTH-1){1'b1}},(1'b0)})+1] = 1;
+
+                                    writeDataPacked[(offsetIn & {{(OFFSET_WIDTH-1){1'b1}},(1'b0)})]   = writeData[15:8];
+                                    writeDataPacked[(offsetIn & {{(OFFSET_WIDTH-1){1'b1}},(1'b0)})+1] = writeData[7:0];
+                                end 
+
+        //sw
+        3'b010          :       begin
+                                    writeBlock[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})]   = 1;
+                                    writeBlock[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+1] = 1;
+                                    writeBlock[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+2] = 1;
+                                    writeBlock[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+3] = 1;
+
+                                    writeDataPacked[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})]   = writeData[31:24];
+                                    writeDataPacked[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+1] = writeData[23:16];
+                                    writeDataPacked[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+2] = writeData[15:8];
+                                    writeDataPacked[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+3] = writeData[7:0];
+                                end 
+
+        default         :       begin
+                                    writeBlock[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})]   = 1;
+                                    writeBlock[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+1] = 1;
+                                    writeBlock[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+2] = 1;
+                                    writeBlock[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+3] = 1;
+
+                                    writeDataPacked[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})]   = writeData[31:24];
+                                    writeDataPacked[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+1] = writeData[23:16];
+                                    writeDataPacked[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+2] = writeData[15:8];
+                                    writeDataPacked[(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+3] = writeData[7:0];
+                                end 
+        endcase
+    end
+end
 
 
 //  State Transition.
@@ -338,24 +321,16 @@ always @ (*) begin
     case (currentState)
         IDLE    :   begin
                         if (miss) begin
-                            nextState = FINDLRU;
-                        end
-                        else begin
-                            nextState = IDLE;
-                        end
-                    end
-
-        FINDLRU :   begin
-                        if (LRU_found) begin
                             if (!cacheValidReg[LRU_id] || !cacheDirtyReg[LRU_id])
                                 nextState = READMEM;
                             else
                                 nextState = UPDATEMEM;
                         end
                         else begin
-                            nextState = FINDLRU;
+                            nextState = IDLE;
                         end
                     end
+
 
         UPDATEMEM   :   nextState = WRWAIT;
 
@@ -396,10 +371,6 @@ always @ (*) begin
                         cacheDataReg[hit_id][(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+1],
                         cacheDataReg[hit_id][(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+2],
                         cacheDataReg[hit_id][(offsetIn & {{(OFFSET_WIDTH-2){1'b1}},(2'b00)})+3]};
-
-        //tempReadData = (cacheDataReg[hit_id] << (offsetIn[OFFSET_WIDTH-1:2]*8)) >> ((BLOCK_SIZE*7));
-        //tempByte = ((tempReadData & (8'hFF << ((3-offsetIn[1:0])*8))) >> ((3-offsetIn[1:0])*8));
-        //tempHalfWord = ((tempReadData & (16'hFFFF << ((1-(offsetIn[1]))*16))) >> ((1-(offsetIn[1]))*16));
     end
     else begin
         tempReadData = 0;
@@ -452,16 +423,8 @@ always @ (*) begin
                         confirmWrite = 0;
                         if (miss) begin
                             valid = 0;
-                            order = 1;
                         end
                         else begin
-                            order = 0;
-                            /*if (hit_id != ASSOCIATIVITY) begin
-                                valid = 1;
-                            end
-                            else begin
-                                valid = 0;
-                            end*/
                             valid = 1;
                             if (write) begin
                                 confirmWrite = 1;
@@ -472,44 +435,29 @@ always @ (*) begin
                         end
                     end
 
-        FINDLRU :   begin
-                        memRead      = 0;
-                        memAddress   = 0;
-                        memWrite     = 0;
-                        for (j = 0; j < BLOCK_SIZE; j = j + 1) begin : x8
-                            memWriteDataPacked[j] = 0;
-                        end
-                        fill = 0;
-                        valid = 0;
-                        order = 1;
-                        confirmWrite = 0;
-                    end
-
 
         UPDATEMEM   :   begin
                             memRead      = 0;
-                            memAddress   = address;
+                            memAddress   = {cacheTagReg[LRU_id], indexIn, {OFFSET_WIDTH{1'b0}}};
                             memWrite     = 1;
                             for (j = 0; j < BLOCK_SIZE; j = j + 1) begin : x9
                                 memWriteDataPacked[j] = cacheDataReg[LRU_id][j];
                             end
                             fill = 0;
                             valid = 0;
-                            order = 0;
                             confirmWrite = 0;
                         end
 
 
         WRWAIT  :   begin
                         memRead      = 0;
-                        memAddress   = address;
+                        memAddress   = {cacheTagReg[LRU_id], indexIn, {OFFSET_WIDTH{1'b0}}};
                         memWrite     = 1;
                         for (j = 0; j < BLOCK_SIZE; j = j + 1) begin : x10
                             memWriteDataPacked[j] = cacheDataReg[LRU_id][j];
                         end
                         fill = 0;
                         valid = 0;
-                        order = 0;
                         confirmWrite = 0;
                     end
 
@@ -523,7 +471,6 @@ always @ (*) begin
                         end
                         fill = 0;
                         valid = 0;
-                        order = 0;
                         confirmWrite = 0;
                     end
 
@@ -535,7 +482,6 @@ always @ (*) begin
                             memWriteDataPacked[j] = 0;
                         end
                         valid = 0;
-                        order = 0;
                         fill = 0;
                         confirmWrite = 0;
                         if (memBusy) begin
@@ -557,7 +503,6 @@ always @ (*) begin
                             end
                             valid = 0;
                             fill[LRU_id] = 1;
-                            order = 0;
                             confirmWrite = 0;
                         end
 
@@ -570,7 +515,6 @@ always @ (*) begin
                             end
                             fill = 0;
                             valid = 0;
-                            order = 0;
                             confirmWrite = 0;
                         end
     endcase

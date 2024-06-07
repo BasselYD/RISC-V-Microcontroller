@@ -1,0 +1,1220 @@
+m255
+K3
+13
+cModel Technology
+Z0 dE:\idk\Digital IC Design\Projects\RISC-V Microcontroller
+vAHB_Arbiter
+Z1 I?c:2D9C_H[NP_:PDLn4QD3
+Z2 VgJA:M8RR1`>l9T[O`PfL33
+Z3 dE:\idk\Digital IC Design\Projects\RISC-V Microcontroller\Sim
+Z4 w1707332113
+Z5 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_Arbiter.v
+Z6 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_Arbiter.v
+L0 35
+Z7 OV;L;10.1d;51
+r1
+31
+Z8 o-work work -O0
+Z9 n@a@h@b_@arbiter
+Z10 !s100 l@QXEX;U@Eb3mZFdfUQ9D1
+Z11 !s108 1716425083.478000
+Z12 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_Arbiter.v|
+Z13 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_Arbiter.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vAHB_BusMatrix
+Z14 IbTY[^@IYcYGR3cG;RTWoc0
+Z15 V4XWDV@aU>2?AQ;gDb[h^>3
+R3
+R4
+Z16 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_BusMatrix.v
+Z17 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_BusMatrix.v
+L0 46
+R7
+r1
+31
+R8
+Z18 n@a@h@b_@bus@matrix
+Z19 !s100 48eDjLdmj[@C0>n@AkcA`1
+Z20 !s108 1716425083.548000
+Z21 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_BusMatrix.v|
+Z22 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_BusMatrix.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vAHB_BusMatrix_default_slave
+Z23 IoD6Bc92`6<zdBKJh1^Ub=3
+Z24 Vda2QR`06=OBPDXUAeV7iZ1
+R3
+R4
+Z25 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_BusMatrix_default_slave.v
+Z26 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_BusMatrix_default_slave.v
+L0 31
+R7
+r1
+31
+R8
+Z27 n@a@h@b_@bus@matrix_default_slave
+Z28 !s100 aoNecN26jT25lC9gW[Eh90
+Z29 !s108 1716425083.608000
+Z30 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_BusMatrix_default_slave.v|
+Z31 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_BusMatrix_default_slave.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vAHB_BusMatrix_lite
+Z32 I_ZSnz<CbE8;9e^?`2Slc^2
+Z33 VbSdC^^@l1zWKMoJQm`mX@3
+R3
+R4
+Z34 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_BusMatrix_lite.v
+Z35 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_BusMatrix_lite.v
+L0 33
+R7
+r1
+31
+R8
+Z36 n@a@h@b_@bus@matrix_lite
+Z37 !s100 jh;lgcoUCNc`CWY6o:h2c3
+Z38 !s108 1716425083.679000
+Z39 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_BusMatrix_lite.v|
+Z40 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_BusMatrix_lite.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vAHB_DecoderStageS0
+Z41 IbHJV?o]Y76QK`GX@01o>k3
+Z42 VZI>g_mMizfZje=RjL2G@i3
+R3
+R4
+Z43 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_DecoderStageS0.v
+Z44 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_DecoderStageS0.v
+L0 36
+R7
+r1
+31
+R8
+Z45 n@a@h@b_@decoder@stage@s0
+Z46 !s100 KPUAbNnBW0bEH[Xc1i[Bn2
+Z47 !s108 1716425083.749000
+Z48 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_DecoderStageS0.v|
+Z49 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_DecoderStageS0.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vAHB_InputStage
+Z50 IR`8RbFM9Xi1n:Hd[>`c7K0
+Z51 V<NA`]@62R68]R^LX9CC=Q0
+R3
+R4
+Z52 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_InputStage.v
+Z53 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_InputStage.v
+L0 32
+R7
+r1
+31
+R8
+Z54 n@a@h@b_@input@stage
+Z55 !s100 Ee9HmUj:jfTg[:N<0C;5G3
+Z56 !s108 1716425083.819000
+Z57 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_InputStage.v|
+Z58 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_InputStage.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vAHB_Master
+!i10b 1
+Z59 !s100 V2fP_1`:afK0a;D<d3`0N3
+Z60 IP?dN3XdeL8BNRWXLeGQYT1
+Z61 VV[dGMPR>S@^P`B@z4`6nS0
+R3
+Z62 w1711955474
+Z63 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/AHB Wrapper/AHB Master.v
+Z64 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/AHB Wrapper/AHB Master.v
+L0 1
+R7
+r1
+!s85 0
+31
+!s108 1716425088.164000
+!s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/AHB Wrapper/AHB Master.v|
+Z65 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/AHB Wrapper/AHB Master.v|
+!s101 -O0
+R8
+Z66 n@a@h@b_@master
+vAHB_OutputStage
+Z67 IXNcHIDa`G6J8:L^:XIc7b1
+Z68 VU[e74`RcU6fl3Yd<WGQeC2
+R3
+R4
+Z69 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_OutputStage.v
+Z70 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_OutputStage.v
+L0 35
+R7
+r1
+31
+R8
+Z71 n@a@h@b_@output@stage
+Z72 !s100 e9mI0:JAd3iLHXe=G>=_F2
+Z73 !s108 1716425083.900000
+Z74 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_OutputStage.v|
+Z75 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/AHB_BusMatrix/AHB_OutputStage.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vALU
+Z76 !s100 F[fC5mchKUJfXIcSVbC@N0
+Z77 I1:Xk6YM2m<h^nFSYRN6n_2
+Z78 VzH_iJGKcKc3fn1bdM=`;z1
+R3
+Z79 w1697396208
+Z80 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/ALU.v
+Z81 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/ALU.v
+L0 1
+R7
+r1
+31
+Z82 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/ALU.v|
+R8
+Z83 n@a@l@u
+Z84 !s108 1716425086.520000
+Z85 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/ALU.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vAPB_Bridge
+Z86 !s100 mQ><67HZnD0z03DIzicYQ3
+Z87 IdniO@gDhfk2iQMJoO9ldi1
+Z88 V3A0:acmgzk^mf[FDlijaS2
+R3
+Z89 w1712839320
+Z90 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/APB_Bridge.v
+Z91 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/APB_Bridge.v
+L0 64
+R7
+r1
+31
+Z92 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/APB_Bridge.v|
+R8
+Z93 n@a@p@b_@bridge
+Z94 !s108 1716425083.980000
+Z95 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/APB_Bridge.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vAPB_decoder
+Z96 !s100 1k5m?8c?ffAlH<eIa@jCz1
+Z97 I6z9BC<g:;Lg:<0e_65_<H3
+Z98 VFKKSGlR3Bg=0[SOI5Jc@h2
+R3
+Z99 w1716298142
+Z100 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/APB_decoder.v
+Z101 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/APB_decoder.v
+L0 1
+R7
+r1
+31
+Z102 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/APB_decoder.v|
+R8
+Z103 n@a@p@b_decoder
+Z104 !s108 1716425084.060000
+Z105 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/APB_decoder.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vAPB_Subsystem
+Z106 !s100 EHOcT_iK61j:l=F>5OXZ=2
+Z107 IN`zXIZ=zenNc=Hf7m5JRm2
+Z108 VLzSQZ1R=ffiAH9YLCFcJ63
+R3
+Z109 w1716298181
+Z110 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/APB_Subsystem.v
+Z111 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/APB_Subsystem.v
+L0 1
+R7
+r1
+31
+Z112 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/APB_Subsystem.v|
+R8
+Z113 n@a@p@b_@subsystem
+Z114 !s108 1716425084.120000
+Z115 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/APB_Subsystem.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vAsync_FIFO
+Z116 !s100 XTfOAamGc>HESM7`_7:T@2
+Z117 IDPQ[G15jRB_gGe;oBZ=`T2
+Z118 VV4]YcihPE]M;9dDe]X8GZ3
+R3
+Z119 w1716424668
+Z120 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/Async_FIFO.v
+Z121 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/Async_FIFO.v
+L0 1
+R7
+r1
+31
+Z122 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/Async_FIFO.v|
+R8
+Z123 n@async_@f@i@f@o
+Z124 !s108 1716425085.534000
+Z125 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/Async_FIFO.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vBranchLogic
+Z126 !s100 :?:eSF=BUOMW;[M]iTBIQ1
+Z127 I8RGeRGTe1L2^0Vm>cjjo>2
+Z128 V_8kf`CiC6`f<5PzS98E_22
+R3
+Z129 w1712467711
+Z130 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/BranchLogic.v
+Z131 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/BranchLogic.v
+L0 1
+R7
+r1
+31
+Z132 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/BranchLogic.v|
+R8
+Z133 n@branch@logic
+Z134 !s108 1716425086.610000
+Z135 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/BranchLogic.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vClkDiv
+Z136 !s100 2LIlbE8OBhaENXo<>f0]X2
+Z137 I_>ZGW[3DIYJ83Q<:WaPFT0
+Z138 V];S:9CCi4i]BAmjIQG0XG3
+R3
+Z139 w1677273520
+Z140 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/Timer/ClkDiv.v
+Z141 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/Timer/ClkDiv.v
+L0 1
+R7
+r1
+31
+Z142 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/Timer/ClkDiv.v|
+R8
+Z143 n@clk@div
+Z144 !s108 1716425084.321000
+Z145 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/Timer/ClkDiv.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vcmsdk_ahb_to_dsram
+Z146 !s100 7O6cO:e=Og[lb8:g]7RXb3
+Z147 IQXodXDe>4YRiiSESf;AF52
+Z148 VQ`MmcNg:UI0m?CzF6YzN?0
+R3
+Z149 w1701878678
+Z150 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_ahb_to_dsram.v
+Z151 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_ahb_to_dsram.v
+L0 26
+R7
+r1
+31
+Z152 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_ahb_to_dsram.v|
+R8
+Z153 !s108 1716425085.774000
+Z154 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_ahb_to_dsram.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vcmsdk_ahb_to_isram
+Z155 !s100 ig<78]S:`CUT7J5?@OLXB1
+Z156 I7h^AKZj;oFAj5UaD8dPeX0
+Z157 VeLgO5]iYodNl[H0`I1<eJ0
+R3
+R149
+Z158 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_ahb_to_isram.v
+Z159 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_ahb_to_isram.v
+L0 26
+R7
+r1
+31
+Z160 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_ahb_to_isram.v|
+R8
+Z161 !s108 1716425085.855000
+Z162 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_ahb_to_isram.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vcmsdk_apb_slave_mux
+Z163 !s100 eEj]Cch:b;IERCR`5[76:1
+Z164 IAm9SYa0CjnXfXDE7DCm4f2
+Z165 VSf15@DjU198RaXPL4N9nj2
+R3
+Z166 w1712764884
+Z167 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/cmsdk_apb_slave_mux.v
+Z168 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/cmsdk_apb_slave_mux.v
+L0 26
+R7
+r1
+31
+Z169 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/cmsdk_apb_slave_mux.v|
+R8
+Z170 !s108 1716425084.190000
+Z171 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/APB/cmsdk_apb_slave_mux.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vcmsdk_fpga_dsram
+Z172 !s100 JRm2V;@_FMCg03_Ze5a@@3
+Z173 IG5Po?QFD]UR0KW=X?FCB33
+Z174 VT1i]HX8<:O=jW0oKj^[jS1
+R3
+Z175 w1711944129
+Z176 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_fpga_dsram.v
+Z177 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_fpga_dsram.v
+L0 27
+R7
+r1
+31
+Z178 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_fpga_dsram.v|
+R8
+Z179 !s108 1716425085.915000
+Z180 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_fpga_dsram.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vcmsdk_fpga_isram
+Z181 !s100 :8Ck^=n6W7Bz=;h4S7S8M1
+Z182 IXaaE4=XGI_2h`;lS^WjW=2
+Z183 VLFYoR`zj3Vjjk7M;9h:EW1
+R3
+Z184 w1716310248
+Z185 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_fpga_isram.v
+Z186 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_fpga_isram.v
+L0 27
+R7
+r1
+31
+Z187 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_fpga_isram.v|
+R8
+Z188 !s108 1716425085.995000
+Z189 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/cmsdk_fpga_isram.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vControlUnit
+Z190 !s100 Q_NKjDLm@4iBCan7P;i]63
+Z191 ICFML1X?WzIP;D76E1S?k<1
+Z192 VEKnkmF3U>[6;I?R<`H=Kb1
+R3
+Z193 w1712469487
+Z194 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/ControlUnit.v
+Z195 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/ControlUnit.v
+L0 1
+R7
+r1
+31
+Z196 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/ControlUnit.v|
+R8
+Z197 n@control@unit
+Z198 !s108 1716425086.711000
+Z199 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/ControlUnit.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vDATA_SRAM_TOP
+Z200 !s100 oOemH_ihiFz8lK^lm@@`40
+Z201 ID_aOC4;7ETaX4`o=N2n=53
+Z202 V>o69XAFSoIJ9<zhLm_zU80
+R3
+Z203 w1701878680
+Z204 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/DATA_SRAM_TOP.v
+Z205 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/DATA_SRAM_TOP.v
+L0 1
+R7
+r1
+31
+Z206 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/DATA_SRAM_TOP.v|
+R8
+Z207 n@d@a@t@a_@s@r@a@m_@t@o@p
+Z208 !s108 1716425086.079000
+Z209 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/DATA_SRAM_TOP.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vDCache
+Z210 !s100 d9V<5bSZfX]NUE_X=3l7L3
+Z211 IJW8IINZK72]8KFoI8k_SX3
+Z212 VJY>?De`UlC9A_;Sf0gzN11
+R3
+Z213 w1711684509
+Z214 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/DCache.v
+Z215 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/DCache.v
+L0 1
+R7
+r1
+31
+Z216 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/DCache.v|
+R8
+Z217 n@d@cache
+Z218 !s108 1716425086.230000
+Z219 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/DCache.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vEX_MEM_Reg
+Z220 !s100 OS=?F`Oo15BDb5LSa6dl63
+Z221 Ie4IYKlJEQ0Q6PBlGo?>Ui1
+Z222 VQg;E48S[fh1bbh9RRz]401
+R3
+Z223 w1714158172
+Z224 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/EX_MEM_Reg.v
+Z225 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/EX_MEM_Reg.v
+L0 1
+R7
+r1
+31
+Z226 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/EX_MEM_Reg.v|
+R8
+Z227 n@e@x_@m@e@m_@reg
+Z228 !s108 1716425086.791000
+Z229 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/EX_MEM_Reg.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vGPIO_Controller
+Z230 !s100 0^z_KAM:[o;jEaY5[]n@:3
+Z231 IQaQb1^?N`MNPW;7U1bgK=1
+Z232 VK3@5Wa0ih^zfC?G4D8LKz3
+R3
+Z233 w1716423539
+Z234 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/GPIO_Controller.v
+Z235 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/GPIO_Controller.v
+L0 1
+R7
+r1
+31
+Z236 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/GPIO_Controller.v|
+R8
+Z237 n@g@p@i@o_@controller
+Z238 !s108 1716425085.684000
+Z239 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/GPIO_Controller.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vHazardUnit
+Z240 !s100 fkR>CC`Mh9FgFTPEBb`Fh0
+Z241 IkmE<68Nk=a3knle:;6KJj1
+Z242 VO_3GY[<X<8`G3V;QcP>@?2
+R3
+Z243 w1712555007
+Z244 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/HazardUnit.v
+Z245 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/HazardUnit.v
+L0 1
+R7
+r1
+31
+Z246 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/HazardUnit.v|
+R8
+Z247 n@hazard@unit
+Z248 !s108 1716425086.871000
+Z249 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/HazardUnit.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vICache
+Z250 !s100 j_11Z:DRKYZVZM`OIaA0M2
+Z251 I40^oTY1_z;kYHIRNkQIN90
+Z252 VOD^<:Q^fU9[L:;c89Hdhh0
+R3
+Z253 w1711949428
+Z254 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/ICache.v
+Z255 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/ICache.v
+L0 1
+R7
+r1
+31
+Z256 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/ICache.v|
+R8
+Z257 n@i@cache
+Z258 !s108 1716425086.290000
+Z259 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/ICache.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vID_EX_Reg
+Z260 !s100 OX6[b5J`d2A[dmR6KH>M]3
+Z261 I7V_;z14e[4Gn0Z<YA0A:13
+Z262 VzMO3@7Xme;2o^Jo8k]bPT3
+R3
+Z263 w1714166873
+Z264 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/ID_EX_Reg.v
+Z265 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/ID_EX_Reg.v
+L0 1
+R7
+r1
+31
+Z266 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/ID_EX_Reg.v|
+R8
+Z267 n@i@d_@e@x_@reg
+Z268 !s108 1716425086.951000
+Z269 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/ID_EX_Reg.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vIF_ID_Reg
+Z270 !s100 LYY>D8V_n9NnbgXk6fZ@f1
+Z271 I5D28LF6<jUMVmL1>o`GBj1
+Z272 Vi7^23:abZ:=X09ke:e25[2
+R3
+Z273 w1696968052
+Z274 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/IF_ID_Reg.v
+Z275 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/IF_ID_Reg.v
+L0 1
+R7
+r1
+31
+Z276 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/IF_ID_Reg.v|
+R8
+Z277 n@i@f_@i@d_@reg
+Z278 !s108 1716425087.011000
+Z279 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/IF_ID_Reg.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vInstruction_SRAM_TOP
+Z280 !s100 Ioa:_[XHI7jemfIof;6E;0
+Z281 IQFlG8m0><>TmTdMB=U22i0
+Z282 VhoLN<4JJYH>[WlXPOCfF03
+R3
+Z283 w1701878682
+Z284 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/Instruction_SRAM_TOP.v
+Z285 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/Instruction_SRAM_TOP.v
+L0 1
+R7
+r1
+31
+Z286 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/Instruction_SRAM_TOP.v|
+R8
+Z287 n@instruction_@s@r@a@m_@t@o@p
+Z288 !s108 1716425086.159000
+Z289 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RAMs/Instruction_SRAM_TOP.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vMEM_WB_Reg
+Z290 !s100 I[@mH<70Ga8ih662gN]9K2
+Z291 IZLLXBXfniEi<]9f>]7GL40
+Z292 VRPifi1i:0DT9dnNdEGE:Z2
+R3
+Z293 w1712070997
+Z294 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/MEM_WB_Reg.v
+Z295 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/MEM_WB_Reg.v
+L0 1
+R7
+r1
+31
+Z296 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/MEM_WB_Reg.v|
+R8
+Z297 n@m@e@m_@w@b_@reg
+Z298 !s108 1716425087.082000
+Z299 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/MEM_WB_Reg.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vMemory_Arbiter
+Z300 !s100 ?f`6XokIeZ:U1K=o9AdKJ0
+Z301 IZnL97=m^3DWA=JE59P6J02
+Z302 V5WNKk:@Ch_jZLg9gPT0690
+R3
+Z303 w1714163645
+Z304 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/Memory_Arbiter.v
+Z305 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/Memory_Arbiter.v
+L0 1
+R7
+r1
+31
+Z306 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/Memory_Arbiter.v|
+R8
+Z307 n@memory_@arbiter
+Z308 !s108 1716425086.380000
+Z309 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/Memory_Arbiter.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vMux_2to1
+Z310 !s100 _4n3Mn@dCJe1USoBl1L8=0
+Z311 IHj1M8lbZ6ZE]_zH5cDP[_0
+Z312 V:7XV=N2QGZ=dg]KR6D;KK1
+R3
+Z313 w1678203624
+Z314 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Mux_2to1.v
+Z315 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Mux_2to1.v
+L0 1
+R7
+r1
+31
+Z316 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Mux_2to1.v|
+R8
+Z317 n@mux_2to1
+Z318 !s108 1716425087.359000
+Z319 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Mux_2to1.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vMux_4to1
+Z320 !s100 0P5HDE5zXfio;bkk0;mml3
+Z321 I@X^66C:]RZa1Qa>=3]lU_1
+Z322 VJeJCRYoKIK91iZ>XeG2f43
+R3
+Z323 w1678489088
+Z324 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Mux-4to1.v
+Z325 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Mux-4to1.v
+L0 1
+R7
+r1
+31
+Z326 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Mux-4to1.v|
+R8
+Z327 n@mux_4to1
+Z328 !s108 1716425087.172000
+Z329 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Mux-4to1.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vMux_8to1
+Z330 !s100 >`aQ8F;PBO2c<S0k50HoS1
+Z331 I>IK[>HZG3:`Z_N0KmjiYK2
+Z332 VB=W0X]LK@W_J2V7K7SomK0
+R3
+Z333 w1678487844
+Z334 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Mux-8to1.v
+Z335 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Mux-8to1.v
+L0 1
+R7
+r1
+31
+Z336 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Mux-8to1.v|
+R8
+Z337 n@mux_8to1
+Z338 !s108 1716425087.282000
+Z339 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Mux-8to1.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vPC
+Z340 !s100 o[ol:EjW6oMi@17gVa_L`1
+Z341 IZN=`_IzRV@T2M;E5J29>h1
+Z342 VUR>_DBZk6N2N]0Z>Xi`l90
+R3
+Z343 w1696968366
+Z344 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/PC.v
+Z345 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/PC.v
+L0 1
+R7
+r1
+31
+Z346 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/PC.v|
+R8
+n@p@c
+Z347 !s108 1716425087.432000
+Z348 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/PC.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vPCPlus4Adder
+Z349 !s100 Wk_2aZPMjE<l7zVENFlNQ1
+Z350 IX<Df4gR:YOK1T`PE[cIA`2
+Z351 VEbePU5mYXFYXELmzXBHlU1
+R3
+Z352 w1697297552
+Z353 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/PCPlus4Adder.v
+Z354 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/PCPlus4Adder.v
+L0 1
+R7
+r1
+31
+Z355 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/PCPlus4Adder.v|
+R8
+Z356 n@p@c@plus4@adder
+Z357 !s108 1716425087.492000
+Z358 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/PCPlus4Adder.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vPCTargetAdder
+Z359 !s100 >`>`8n5XkG?5BKMZlI96`0
+Z360 I@WUko@Aj9mEiBiY_X1F=[0
+Z361 VXXPANgJY1>>Y>2Bi3_dPO2
+R3
+Z362 w1678141125
+Z363 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/PCTargetAdder.v
+Z364 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/PCTargetAdder.v
+L0 1
+R7
+r1
+31
+Z365 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/PCTargetAdder.v|
+R8
+Z366 n@p@c@target@adder
+Z367 !s108 1716425087.559000
+Z368 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/PCTargetAdder.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vRegister_File
+Z369 !s100 `G>N<_hiJRhl`LJ?RR0802
+Z370 I56?R1M3T;Cl0Md^U3AYAU1
+Z371 Vb]Z`0e5^e6fT?NTGHLZlO1
+R3
+Z372 w1714166753
+Z373 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/RegisterFile.v
+Z374 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/RegisterFile.v
+L0 1
+R7
+r1
+31
+Z375 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/RegisterFile.v|
+R8
+Z376 n@register_@file
+Z377 !s108 1716425087.633000
+Z378 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/RegisterFile.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vRV32I
+Z379 !s100 kh<BW=j3UNR:B[WKLGn2:1
+Z380 INbf0QG^9NUAbdI??K^O;a2
+Z381 VS`cY:hJO>YlEQ3VdkfGD43
+R3
+Z382 w1714164244
+Z383 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/RV32I.v
+Z384 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/RV32I.v
+L0 1
+R7
+r1
+31
+Z385 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/RV32I.v|
+R8
+Z386 n@r@v32@i
+Z387 !s108 1716425087.894000
+Z388 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/RV32I.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vSignExtend
+Z389 !s100 mJM9_k8:9QQN]=K?a]ha:1
+Z390 IUHdn1A2CVQT^Eml8F3B3I3
+Z391 V9B]_9T:QDdL[898NPB5:T1
+R3
+Z392 w1678744746
+Z393 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/SignExtend.v
+Z394 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/SignExtend.v
+L0 1
+R7
+r1
+31
+Z395 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/SignExtend.v|
+R8
+Z396 n@sign@extend
+Z397 !s108 1716425087.723000
+Z398 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/SignExtend.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vSync_RAM
+Z399 !s100 ?2GiUjRTU:j>2>oL`:RBd1
+Z400 If[el1OS]JkMob?]KYIUZI1
+Z401 VkVJ2e9=iH6meJeUl7k^Z=3
+R3
+Z402 w1708471505
+Z403 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/Sync_RAM.v
+Z404 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/Sync_RAM.v
+L0 1
+R7
+r1
+31
+Z405 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/Sync_RAM.v|
+R8
+Z406 n@sync_@r@a@m
+Z407 !s108 1716425086.440000
+Z408 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Caches/Sync_RAM.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vSystem_Top
+Z409 !s100 CIP2]dFXf1UAoWX8a5GLl0
+Z410 I_P]4WddOel1n>Dhm;cGYd3
+Z411 Vm=mI6UMRF3Xz[QE[EKS=Y1
+R3
+Z412 w1716297075
+Z413 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/System_Top.v
+Z414 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/System_Top.v
+L0 1
+R7
+r1
+31
+Z415 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/System_Top.v|
+R8
+Z416 n@system_@top
+Z417 !s108 1716425087.960000
+Z418 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/System_Top.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vTest_tb
+Z419 !s100 GzX8n=izm8?g=KnD6V@a=2
+Z420 IXBHXAW=@lN`WWhci4GbQd0
+Z421 VQO>g;3[=T]]XOSTF6L`ej2
+R3
+Z422 w1716391134
+Z423 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Testbenches/Test.v
+Z424 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Testbenches/Test.v
+L0 3
+R7
+r1
+31
+Z425 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Testbenches/Test.v|
+R8
+Z426 n@test_tb
+!i10b 1
+!s85 0
+Z427 !s108 1716425088.084000
+Z428 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Testbenches/Test.v|
+!s101 -O0
+vTimer
+Z429 !s100 3^aC4TQL^911e:D4ANg]]0
+Z430 ITTD6_i82:O;5oJ2FOn3:22
+Z431 V_Nf^b1X[OdTVRh8?9Pk=>3
+R3
+Z432 w1714167918
+Z433 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/Timer/Timer.v
+Z434 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/Timer/Timer.v
+L0 1
+R7
+r1
+31
+Z435 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/Timer/Timer.v|
+R8
+Z436 n@timer
+Z437 !s108 1716425084.401000
+Z438 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/Timer/Timer.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vTimer_APB
+Z439 !s100 klXnAM;i9CBzdnXk8hgV>2
+Z440 IP05Zk_Y64L3^18^EV9GNU3
+Z441 VVWQT]WEfSQiIEA:LHh4[D2
+R3
+Z442 w1712839521
+Z443 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/Timer/Timer_APB.v
+Z444 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/Timer/Timer_APB.v
+L0 1
+R7
+r1
+31
+Z445 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/Timer/Timer_APB.v|
+R8
+Z446 n@timer_@a@p@b
+Z447 !s108 1716425084.491000
+Z448 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/Timer/Timer_APB.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vUART_APB
+Z449 I`<ViTRb`WQ>22?89VKHbD3
+Z450 Vmm^13lV^T@]GGDT1kGODG0
+R3
+Z451 w1716425078
+Z452 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_APB.v
+Z453 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_APB.v
+L0 1
+R7
+r1
+31
+Z454 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_APB.v|
+R8
+Z455 n@u@a@r@t_@a@p@b
+Z456 !s100 Gl8nzkFfG7oPh]_;Q4PJo3
+Z457 !s108 1716425085.624000
+Z458 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_APB.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vUART_Rx_Counter
+Z459 !s100 I1]jPODbFj;:3aW`YbZ7m0
+Z460 IMaLI12fed9?@i5]?Q:lWL1
+Z461 VSoVZGJeVo0Zbz57zJ8nNn1
+R3
+Z462 w1672483598
+Z463 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_Counter.v
+Z464 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_Counter.v
+L0 1
+R7
+r1
+31
+Z465 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_Counter.v|
+R8
+Z466 n@u@a@r@t_@rx_@counter
+Z467 !s108 1716425084.554000
+Z468 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_Counter.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vUART_Rx_Deserializer
+Z469 !s100 9F1He=H?>XoT[6h5Nfg493
+Z470 I>Z2<4^doSHl@82Jj28DoG1
+Z471 VYF?DHj9UMoSeVAj@JQ[AY1
+R3
+Z472 w1670588884
+Z473 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_Deserializer.v
+Z474 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_Deserializer.v
+L0 1
+R7
+r1
+31
+Z475 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_Deserializer.v|
+R8
+Z476 n@u@a@r@t_@rx_@deserializer
+Z477 !s108 1716425084.662000
+Z478 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_Deserializer.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vUART_Rx_FSM
+Z479 !s100 <01IehRlb=aPGED[adYFe1
+Z480 I8U<`FNKEAeiW1:?i6TKVG0
+Z481 V05IbATCCT`zS7SVK`6bWC0
+R3
+Z482 w1672483620
+Z483 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_FSM.v
+Z484 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_FSM.v
+L0 1
+R7
+r1
+31
+Z485 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_FSM.v|
+R8
+Z486 n@u@a@r@t_@rx_@f@s@m
+Z487 !s108 1716425084.742000
+Z488 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_FSM.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vUART_Rx_ParChk
+Z489 !s100 URkL>cj[Cz[Y>MS^fClEN3
+Z490 I=OOO8f34lj[g3k0fg[db?1
+Z491 VIaT3l:OFe50:dPHcmAjX92
+R3
+Z492 w1672483640
+Z493 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_ParChk.v
+Z494 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_ParChk.v
+L0 1
+R7
+r1
+31
+Z495 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_ParChk.v|
+R8
+Z496 n@u@a@r@t_@rx_@par@chk
+Z497 !s108 1716425084.812000
+Z498 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_ParChk.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vUART_Rx_Sampler
+Z499 !s100 I]T5B6CFB^BInOOZLXB?f1
+Z500 Ik^dcWEmc7L5_Q>AML[aMS1
+Z501 V0Yz>g<<Kkki4c=4c[<Bh91
+R3
+Z502 w1672483658
+Z503 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_Sampler.v
+Z504 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_Sampler.v
+L0 1
+R7
+r1
+31
+Z505 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_Sampler.v|
+R8
+Z506 n@u@a@r@t_@rx_@sampler
+Z507 !s108 1716425084.872000
+Z508 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_Sampler.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vUART_Rx_StpChk
+Z509 !s100 1W2?TR8[1n8aef>C<SdDR0
+Z510 I]CP398GZceVC@T_9QUMSN1
+Z511 VO1_:0NS>I?R87E1hYdn;H0
+R3
+Z512 w1672483692
+Z513 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_StpChk.v
+Z514 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_StpChk.v
+L0 1
+R7
+r1
+31
+Z515 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_StpChk.v|
+R8
+Z516 n@u@a@r@t_@rx_@stp@chk
+Z517 !s108 1716425084.954000
+Z518 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_StpChk.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vUART_Rx_StrtChk
+Z519 !s100 N[[VLFTAlmEbMoL8d@92M1
+Z520 Ik;lFM7M]GFVIS?dHmKC?n0
+Z521 Vh1B4=AShYko9ghGllX@4F2
+R3
+Z522 w1672483700
+Z523 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_StrtChk.v
+Z524 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_StrtChk.v
+L0 1
+R7
+r1
+31
+Z525 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_StrtChk.v|
+R8
+Z526 n@u@a@r@t_@rx_@strt@chk
+Z527 !s108 1716425085.023000
+Z528 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_StrtChk.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vUART_Rx_TOP
+Z529 !s100 5WHlYW=eA>e`OUC><6fF:3
+Z530 Ihoho9D>VKl[]9Dl`@3;HK2
+Z531 VPK91oB?Z4mKD4EFE<MB1?3
+R3
+Z532 w1672483726
+Z533 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_TOP.v
+Z534 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_TOP.v
+L0 1
+R7
+r1
+31
+Z535 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_TOP.v|
+R8
+Z536 n@u@a@r@t_@rx_@t@o@p
+Z537 !s108 1716425085.093000
+Z538 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Rx/UART_Rx_TOP.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vUART_Tx_FSM
+Z539 !s100 jW@WG2;kn1W?dGBK^RBH82
+Z540 IlR6?hV<emoDRA^nQoYR2Y0
+Z541 V<RV6Aj@4QXkcUIZ;363gd2
+R3
+Z542 w1672915670
+Z543 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_FSM.v
+Z544 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_FSM.v
+L0 1
+R7
+r1
+31
+Z545 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_FSM.v|
+R8
+Z546 n@u@a@r@t_@tx_@f@s@m
+Z547 !s108 1716425085.154000
+Z548 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_FSM.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vUART_Tx_MUX
+Z549 !s100 lfCdPGg@KZUbFQ=m:9TS92
+Z550 IRQC^b5N94QG;df>03>d@`1
+Z551 V@EIeYj<lZ=hZ`TVXE22NC3
+R3
+R542
+Z552 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_MUX.v
+Z553 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_MUX.v
+L0 1
+R7
+r1
+31
+Z554 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_MUX.v|
+R8
+Z555 n@u@a@r@t_@tx_@m@u@x
+Z556 !s108 1716425085.223000
+Z557 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_MUX.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vUART_Tx_ParCalc
+Z558 !s100 ^cknW1P74bZ2a6zjlMF6X1
+Z559 InjbU:74kaK7:Z@PZVfk2b1
+Z560 V6o3DjoTUUIN<`SMYA?n6]2
+R3
+Z561 w1672915672
+Z562 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_ParCalc.v
+Z563 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_ParCalc.v
+L0 1
+R7
+r1
+31
+Z564 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_ParCalc.v|
+R8
+Z565 n@u@a@r@t_@tx_@par@calc
+Z566 !s108 1716425085.303000
+Z567 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_ParCalc.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vUART_Tx_Serializer
+Z568 !s100 ?4>nc5_Y3Akk2>X1jd9IX3
+Z569 I71d=KXYAJ5d^kHmDT6n<g2
+Z570 VeXkdOa0RHI<ce?U2KzAbH3
+R3
+R542
+Z571 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_Serializer.v
+Z572 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_Serializer.v
+L0 1
+R7
+r1
+31
+Z573 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_Serializer.v|
+R8
+Z574 n@u@a@r@t_@tx_@serializer
+Z575 !s108 1716425085.373000
+Z576 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_Serializer.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vUART_Tx_TOP
+Z577 !s100 OB9gQj^z;W23`W]mIH<n91
+Z578 I^_IP82=6zKTco>QLL[EGk1
+Z579 VnbW`MCJT8g91fd>LL0?ZF2
+R3
+R561
+Z580 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_TOP.v
+Z581 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_TOP.v
+L0 1
+R7
+r1
+31
+Z582 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_TOP.v|
+R8
+Z583 n@u@a@r@t_@tx_@t@o@p
+Z584 !s108 1716425085.434000
+Z585 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Peripherals/UART/UART_Tx/UART_Tx_TOP.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vZicsr
+Z586 !s100 >QEXFzYQn93zDE[RBoCUo1
+Z587 IjTeAEP:]gLNg27c`<5PeG3
+Z588 VBcoUGTfeVF36oM<ITo=eE2
+R3
+Z589 w1712724320
+Z590 8E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Zicsr.v
+Z591 FE:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Zicsr.v
+L0 1
+R7
+r1
+31
+Z592 !s90 -reportprogress|300|-work|work|E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Zicsr.v|
+R8
+Z593 n@zicsr
+Z594 !s108 1716425087.803000
+Z595 !s107 E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/RV32I/Pipeline/Zicsr.v|
+!i10b 1
+!s85 0
+!s101 -O0

@@ -32,6 +32,15 @@ reg     [0:(BLOCK_SIZE*8) -1]  cacheDataReg;
 reg     [TAG_WIDTH-1:0]     cacheTagReg;
 reg                         cacheValidReg;
 
+integer i;
+initial begin
+    for (i = 0; i < NUM_LINES; i = i + 1) begin
+        cacheData[i] <= 0;
+        cacheTag[i] <= 0;
+        cacheValid[i] <= 0;
+    end
+end
+
 
 localparam  IDLE    = 2'b00,
             READMEM = 2'b01,

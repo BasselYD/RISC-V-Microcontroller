@@ -29,7 +29,7 @@ module cmsdk_fpga_dsram #(
 // Parameters
 // --------------------------------------------------------------------------
   parameter AW = 16,
-  parameter MEMFILE = "image.hex"
+  parameter MEMFILE = "E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Testbenches/Test Programs/data.hex"
  )
  (
   // Inputs
@@ -87,7 +87,7 @@ localparam AWT = ((1<<(AW-0))-1);
 
   assign RDATA      = (cs_reg) ? read_data : {32{1'b0}};
 
-`ifdef SIMULATION
+//`ifdef SIMULATION
   integer i;
   localparam MEM_SIZE = 2**(AW+2);
   reg [7:0] fileimage [0:((MEM_SIZE)-1)];
@@ -102,7 +102,7 @@ localparam AWT = ((1<<(AW-0))-1);
         BRAM3[i] = 8'h00;
       end
 
-`ifndef RAMPRELOAD_SPI
+//`ifndef RAMPRELOAD_SPI
   // Simulation
   $readmemh(MEMFILE, fileimage);
       // Copy from single array to splitted array
@@ -114,8 +114,8 @@ localparam AWT = ((1<<(AW-0))-1);
       BRAM0[i] = fileimage[i*4];
 
     end
-`endif // RAMPRELOAD_SPI
+//`endif // RAMPRELOAD_SPI
   end
-`endif // SIMULATION
+//`endif // SIMULATION
 
 endmodule

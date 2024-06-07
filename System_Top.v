@@ -1,6 +1,17 @@
 module System_Top (
-    input       wire        clk,
-    input       wire        rst
+    input       wire        HCLK,
+    input       wire        HRESETn,
+    input       wire        PCLK,
+    input       wire        PRESETn,
+    input   wire            NMI,
+    input   wire    [15:0]  externalInterrupts,
+    input   wire            UART_RX,
+    output  wire            UART_TX,
+    output  wire            UART_Busy,
+    inout   wire    [7:0]   PORTA,
+    inout   wire    [7:0]   PORTB,
+    inout   wire    [7:0]   PORTC,
+    inout   wire    [7:0]   PORTD
 );
 
 
@@ -8,7 +19,7 @@ module System_Top (
 wire  [31:0]  addr;
 wire          write;
 wire  [31:0]  wdata;
-wire   [2:0]  transfer;
+wire   [1:0]  transfer;
 wire  [31:0]  rdata;
 wire          ready;
 
@@ -116,11 +127,12 @@ wire        HREADYOUTM3;     // Transfer done
 wire [31:0] HAUSERM3;        // Address USER signals
 wire [31:0] HWUSERM3;        // Write-data USER signals
 
+wire timerInterrupt;
 
 
 RV32I Processor (
-    .clk(clk),
-    .rst(rst),
+    .clk(HCLK),
+    .rst(HRESETn),
 
     .rdata(rdata),
     .ready(ready),
@@ -129,13 +141,17 @@ RV32I Processor (
     .addr(addr),
     .write(write),
     .wdata(wdata),
-    .transfer(transfer)
+    .transfer(transfer),
+
+    .NMI(NMI),
+    .timerInterrupt(timerInterrupt),
+    .externalInterrupts(externalInterrupts)
 );
 
 AHB_Master AHB_Interface (
     //  Clock and Reset.
-    .HCLK(clk),
-    .HRESETn(rst),
+    .HCLK(HCLK),
+    .HRESETn(HRESETn),
 
     //  Processor Interface.
     .addr(addr),
@@ -163,8 +179,8 @@ AHB_Master AHB_Interface (
 AHB_BusMatrix_lite BusMatrix (
 
     // Common AHB signals
-    .HCLK(clk),
-    .HRESETn(rst),
+    .HCLK(HCLK),
+    .HRESETn(HRESETn),
 
     // System Address Remap control
     .REMAP(3'b0),
@@ -224,7 +240,7 @@ AHB_BusMatrix_lite BusMatrix (
     .HAUSERM0(HAUSERM0),
     .HWUSERM0(HWUSERM0),
 
-    // Output port MI1 (outputs to slave 1, I-SRAM)
+    // Output port MI1 (outputs to slave 1, D-SRAM)
     .HSELM1(HSELM1),
     .HADDRM1(HADDRM1),
     .HTRANSM1(HTRANSM1),
@@ -279,8 +295,8 @@ AHB_BusMatrix_lite BusMatrix (
 
     
 Instruction_SRAM_TOP Instruction_SRAM_TOP_instance(
-    .HCLK(clk),
-    .HRESETn(rst),
+    .HCLK(HCLK),
+    .HRESETn(HRESETn),
     .HSEL(HSELM0),
     .HREADY(HREADYMUXM0),
     .HTRANS(HTRANSM0),
@@ -295,8 +311,8 @@ Instruction_SRAM_TOP Instruction_SRAM_TOP_instance(
 
 
 DATA_SRAM_TOP DATA_SRAM_TOP_instance(
-    .HCLK(clk),
-    .HRESETn(rst),
+    .HCLK(HCLK),
+    .HRESETn(HRESETn),
     .HSEL(HSELM1),
     .HREADY(HREADYMUXM1),
     .HTRANS(HTRANSM1),
@@ -307,6 +323,32 @@ DATA_SRAM_TOP DATA_SRAM_TOP_instance(
     .HREADYOUT(HREADYOUTM1),
     .HRESP(HRESPM1),
     .HRDATA(HRDATAM1)
+);
+
+APB_Subsystem u_apb_subsystem (
+    .HCLK(HCLK),
+    .HRESETn(HRESETn),
+    .HTRANS(HTRANSM2),
+    .HSIZE(HSIZEM2),
+    .HPROT(HPROTM2),
+    .HADDR(HADDRM2[15:0]),
+    .HWDATA(HWDATAM2),
+    .HSEL(HSELM2),
+    .HWRITE(HWRITEM2),
+    .HREADY(HREADYMUXM2), 
+    .PCLK(PCLK),
+    .PRESETn(PRESETn),
+    .HRDATA(HRDATAM2),
+    .HREADYOUT(HREADYOUTM2),
+    .HRESP(HRESPM2),
+    .UART_RX(UART_RX),
+    .UART_TX(UART_TX),
+    .UART_Busy(UART_Busy),
+    .PORTA(PORTA),
+    .PORTB(PORTB),
+    .PORTC(PORTC),
+    .PORTD(PORTD),
+    .timer_interrupt(timerInterrupt)
 );
 
 endmodule

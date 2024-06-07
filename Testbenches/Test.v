@@ -3,55 +3,71 @@
 module Test_tb;
 
 
-reg              clk;
-reg              rst;
+reg              HCLK;
+reg              HRESETn;
+reg              PCLK;
+reg              PRESETn;
+reg              NMI;
+reg [15:0]       externalInterrupts;
 
-reg [31:0]  mem [255:0];
+reg             UART_RX;
+wire            UART_TX;
+wire            UART_Busy;
+wire    [7:0]   PORTA;
+wire    [7:0]   PORTB;
+wire    [7:0]   PORTC;
+wire    [7:0]   PORTD;
 
-// Task to initialize memory from a hex file
-task initialize_memory;
-    integer i; // Loop index
-
-    begin
-        // Read memory initialization file
-        $readmemh("C:/Users/basse/Desktop/idk/Digital IC Design/Projects/RISC-V Microcontroller/instructions.hex", mem);
-
-        // Display a message indicating memory initialization is complete
-        $display("Memory initialization complete");
-    end
-endtask
 
 initial begin
-    initialize_memory();
 
-    clk = 0;
-    rst = 0;
-    #5
-    rst = 1;
-    #5
+    HCLK = 0;
+    HRESETn = 0;
+    PCLK = 0;
+    PRESETn = 0;
 
-    //DUT.HREADY = 1;
-    //DUT.HRESP = 0;
+    NMI = 0;
+    externalInterrupts = 0;
+    
+    #20
+    HRESETn = 1;
+    PRESETn = 1;
+    #20
 
-    #50
-    //DUT.HREADY = 0;
-    #10
-    //DUT.HREADY = 1;
+    //#800
+    //NMI = 1;
+    //#10
+    //NMI = 0;
+    //#285
+    //externalInterrupts = 5;
+    //#200
+    //externalInterrupts = 0;
 
-    #5000;
+    #100000;
 
     $stop;
 end
 
-//assign DUT.HRDATA = mem[DUT.HADDR >> 2];
 
 // Clock generation
-always #5 clk = ~clk;
+always #5  HCLK = ~HCLK;
+always #10 PCLK = ~PCLK;
 
 
 System_Top DUT (
-    .clk(clk),
-    .rst(rst)
+    .HCLK(HCLK),
+    .HRESETn(HRESETn),
+    .PCLK(PCLK),
+    .PRESETn(PRESETn),
+    .NMI(NMI),
+    .externalInterrupts(externalInterrupts),
+    .UART_RX(UART_RX),
+    .UART_TX(UART_TX),
+    .UART_Busy(UART_Busy),
+    .PORTA(PORTA),
+    .PORTB(PORTB),
+    .PORTC(PORTC),
+    .PORTD(PORTD)
 );
 
 

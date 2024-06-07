@@ -29,7 +29,7 @@ module cmsdk_fpga_isram #(
 // Parameters
 // --------------------------------------------------------------------------
   parameter AW = 16,
-  parameter MEMFILE = "C:/Users/basse/Desktop/idk/Digital IC Design/Projects/RISC-V Microcontroller/instructions.bin"
+  parameter MEMFILE = "E:/idk/Digital IC Design/Projects/RISC-V Microcontroller/Testbenches/Test Programs/gpio_uart.hex"
  )
  (
   // Inputs
@@ -109,10 +109,7 @@ localparam AWT = ((1<<(AW-0))-1);
 
 //`ifndef RAMPRELOAD_SPI
   // Simulation
-      $readmemb(MEMFILE, fileimage);
-      //File_ID= $fopen("C:/Users/basse/Desktop/idk/Digital IC Design/Projects/RISC-V Microcontroller/instructions.bin", "rb");
-      //$fread(fileimage, File_ID);
-      //$fclose(File_ID);
+      $readmemh(MEMFILE, fileimage);
       // Copy from single array to splitted array
     for (i=0;i<(MEM_SIZE/4); i= i+1)
     begin

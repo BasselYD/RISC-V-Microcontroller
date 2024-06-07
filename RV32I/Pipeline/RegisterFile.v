@@ -18,20 +18,10 @@ localparam DEPTH = (1 << DEPTH_BITS);
 reg     [WIDTH - 1 : 0]      RF      [DEPTH - 1 : 0];
 
 
-always @ (posedge clk or negedge rst)
+always @ (*)
 begin
-    if (!rst)
-        begin
-            RdData1 <= 0;
-            RdData2 <= 0;
-        end
-
-    else 
-        begin
-            RdData1 <= (RdAddress1 == 0) ? 32'b0 : RF[RdAddress1];
-            RdData2 <= (RdAddress2 == 0) ? 32'b0 : RF[RdAddress2];
-        end
-
+    RdData1 = (RdAddress1 == 0) ? 32'b0 : RF[RdAddress1];
+    RdData2 = (RdAddress2 == 0) ? 32'b0 : RF[RdAddress2];
 end
 
 always @ (negedge clk)

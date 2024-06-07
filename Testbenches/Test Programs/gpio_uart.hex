@@ -1,0 +1,173 @@
+//# UART initialization
+//lui     t0, 0x40001       # Load upper immediate for UART base address
+40
+00
+12
+b7
+//li      t1, 0x364         # Load baud rate divisor (example value)
+36
+40
+03
+13
+//sw      t1, 4(t0)         # Set BRD register (offset 4)
+00
+62
+a2
+23
+//li      t1, 0x8           # Load prescaler value (example value)
+00
+80
+03
+13
+//sw      t1, 8(t0)         # Set Prescale register (offset 8)
+00
+62
+a4
+23
+//li      t1, 0xA           # Enable UART transmitter and receiver (example value)
+00
+a0
+03
+13
+//sw      t1, 12(t0)
+00
+62
+a6
+23
+
+//# Send a character 'B' through UART
+//li      t1, 'B'           # Load character 'B'
+04
+20
+03
+13
+//sw      t1, 0(t0)         # Write to TXRX register (offset 0)
+00
+62
+a0
+23
+
+//# GPIO initialization
+//lui     t2, 0x40002       # Load upper immediate for GPIO base address
+40
+00
+23
+b7
+//li      t3, 0x0F          # Set all GPIO pins as output (example value)
+00
+f0
+0e
+13
+//sw      t3, 4(t2)         # Set A_DIRECTION register (offset 4)
+01
+c3
+a2
+23
+//li      t3, 0x0           # Set GPIO mode (example value)
+00
+00
+0e
+13
+//sw      t3, 0(t2)         # Set A_MODE register (offset 0)
+01
+c3
+a0
+23
+
+//# Set GPIO output
+//li      t3, 0x1           # Set GPIO pin 0 to high
+00
+10
+0e
+13
+//sw      t3, 8(t2)         # Write to A_OUTPUT register (offset 8)
+01
+c3
+a4
+23
+
+//# Read GPIO input
+//lw      t4, 12(t2)        # Read from A_INPUT register (offset 12)
+00
+c3
+ae
+83
+
+//# Check if GPIO pin 0 is high
+//andi    t4, t4, 0x1       # Mask for pin 0
+00
+1e
+fe
+93
+//beqz    t4, gpio_low      # If pin 0 is low, jump to gpio_low
+00
+0e
+86
+63
+
+//# GPIO pin 0 is high, do something (example: loop forever)
+//gpio_high:
+//addi x1, x0, 42
+02
+a0
+00
+93
+//j       program_end         # Infinite loop
+00
+80
+00
+6f
+
+//gpio_low:
+//# GPIO pin 0 is low, do something else (example: loop forever)
+//addi x1, x0, 19
+01
+30
+00
+93
+
+//# End of program
+//program_end:
+//j program_end
+fa
+5f
+f0
+ef
+
+
+00
+00
+00
+33
+00
+00
+00
+33
+00
+00
+00
+33
+00
+00
+00
+33
+00
+00
+00
+33
+00
+00
+00
+33
+00
+00
+00
+33
+00
+00
+00
+33
+00
+00
+00
+33

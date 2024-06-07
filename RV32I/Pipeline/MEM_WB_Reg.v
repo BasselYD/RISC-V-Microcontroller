@@ -9,6 +9,7 @@ module MEM_WB_Reg (
     input       wire        [31:0]      ExtImmM,
     input       wire        [31:0]      PcTargetM,
     input       wire        [31:0]      PCPlus4M,
+    input       wire        [31:0]      csrDataM,
 
     input       wire                    clk,
     input       wire                    rst,
@@ -23,7 +24,8 @@ module MEM_WB_Reg (
     output      reg         [4:0]       RdW,
     output      reg         [31:0]      ExtImmW,
     output      reg         [31:0]      PcTargetW,
-    output      reg         [31:0]      PCPlus4W
+    output      reg         [31:0]      PCPlus4W,
+    output      reg         [31:0]      csrDataW
 );
     
 
@@ -40,6 +42,7 @@ always @ (posedge clk or negedge rst)
                 ExtImmW     <=   0;
                 PcTargetW   <=   0;
                 PCPlus4W    <=   0;
+                csrDataW    <=   0;
             end
         else
             begin
@@ -54,6 +57,7 @@ always @ (posedge clk or negedge rst)
                         ExtImmW     <=   ExtImmM;
                         PcTargetW   <=   PcTargetM;
                         PCPlus4W    <=   PCPlus4M;
+                        csrDataW    <=   csrDataM;
                     end
             end
     end
